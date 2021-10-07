@@ -1,13 +1,13 @@
 const Routes = [
   {
-    path: '/login',
-    pageName: '登录',
-    component: '@/pages/login'
-  },
-  {
     path: '/',
-    // component: '@/layouts/BasicLayout',
+    component: '@/layouts/BaseLayout',
     routes: [
+      {
+        path: '/login',
+        pageName: '登录',
+        component: '@/pages/login'
+      },
       {
         path: '/',
         pageName: '首页',
