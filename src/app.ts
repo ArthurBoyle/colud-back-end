@@ -1,10 +1,10 @@
-import { RequestConfig } from 'umi';
+import { RequestConfig, history } from 'umi';
 import { message, notification } from 'antd';
 
 export const dva = {
   config: {
     async onError(e: Error) {
-      message.error(e.message);
+      await message.error(e.message);
     }
   }
 };
@@ -45,7 +45,17 @@ export const request: RequestConfig = {
       }, 500);
     }*/
     throw error;
-  }
+  },
+  requestInterceptors: [
+    (url: string, options: any) => {
+      if (window.localStorage.getItem('user') === null) {
+        history.replace('/login');
+      }
+      return {
+        options: { ...options }
+      };
+    }
+  ]
   //  自定义端口规范
   // errorConfig: {
   //   adaptor: (res) => {

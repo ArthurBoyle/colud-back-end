@@ -4,13 +4,18 @@ const Routes = [
     component: '@/layouts/BaseLayout',
     routes: [
       {
+        title: '登录',
         path: '/login',
-        pageName: '登录',
         component: '@/pages/login'
       },
       {
+        title: '直播列表',
+        path: '/liveList',
+        component: '@/pages/LiveList'
+      },
+      {
+        title: '首页',
         path: '/',
-        pageName: '首页',
         component: '@/pages/index'
       }
       /*{

@@ -22,8 +22,8 @@ const Login: React.FC = () => {
       message.warn('账号或密码错误');
     } else {
       message.success('登录成功');
-      history.push('/');
       window.localStorage.setItem('user', data.data.id);
+      history.push('/liveList');
     }
   };
 

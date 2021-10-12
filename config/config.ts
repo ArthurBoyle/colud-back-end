@@ -8,11 +8,11 @@ export default defineConfig({
   },
   routes: routes,
   fastRefresh: {},
-  antd: {},
-  dva: {
-    immer: true,
-    hmr: false
+  dynamicImport: {
+    loading: '@/Loading'
   },
+  antd: {},
+  dva: { immer: true },
   hash: true,
   history: { type: 'hash' },
   targets: {
