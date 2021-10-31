@@ -49,6 +49,7 @@ export const request: RequestConfig = {
   requestInterceptors: [
     (url: string, options: any) => {
       if (window.localStorage.getItem('user') === null) {
+        window.localStorage.removeItem('user');
         history.replace('/login');
       }
       return {

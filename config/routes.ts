@@ -6,7 +6,7 @@ const Routes = [
       {
         title: '登录',
         path: '/login',
-        component: '@/pages/login'
+        component: '@/pages/Login'
       },
       {
         title: '直播列表',

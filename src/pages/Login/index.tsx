@@ -1,5 +1,5 @@
-import React from 'react';
-import { request, history } from 'umi';
+import React, { useEffect } from 'react';
+import { connect, Dispatch } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button, Modal, Form, Input, message } from 'antd';
 import Footer from './components/Footer';
@@ -7,24 +7,43 @@ import style from './index.less';
 
 const { Item } = Form;
 
-const Login: React.FC = () => {
+interface IProps {
+  dispatch: Dispatch;
+}
+
+const Login: React.FC<IProps> = (props) => {
+  const { dispatch } = props;
+
   const [form] = Form.useForm();
 
   const [visible, setVisible] = useImmer<boolean>(false);
 
-  const login = async () => {
-    const params = await form.validateFields();
-    const data = await request('api/admin/Login/login', {
-      method: 'post',
-      data: { ...params }
+  useEffect(() => {
+    dispatch({
+      type: 'userInfo/getUserInfo'
     });
-    if (data.status === 0) {
-      message.warn('账号或密码错误');
-    } else {
-      message.success('登录成功');
-      window.localStorage.setItem('user', data.data.id);
-      history.push('/liveList');
-    }
+  }, [dispatch]);
+
+  const handleLogin = async () => {
+    const params = await form.validateFields();
+    dispatch({
+      type: 'userInfo/login',
+      payload: params,
+      callback: (result: any) => {
+        if (result) {
+          const { status, data } = result;
+          if (status === 0) {
+            message.warn('账号或密码错误');
+          } else {
+            message.success('登录成功');
+            window.localStorage.setItem('user', data.id);
+            dispatch({
+              type: 'userInfo/getUserInfo'
+            });
+          }
+        }
+      }
+    });
   };
 
   return (
@@ -169,7 +188,7 @@ const Login: React.FC = () => {
             <Input.Password placeholder="请输入密码" />
           </Item>
         </Form>
-        <Button type="primary" block onClick={login}>
+        <Button type="primary" block onClick={handleLogin}>
           登录
         </Button>
       </Modal>
@@ -177,4 +196,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default connect()(Login);

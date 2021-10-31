@@ -1,14 +1,28 @@
-import { request } from 'umi';
+import React from 'react';
+import { connect, request, Dispatch } from 'umi';
 import { Button } from 'antd';
+import { State as UserInfoState } from '@/models/userInfo';
 import styles from './index.less';
 
-export default function IndexPage() {
+interface IProps {
+  dispatch: Dispatch;
+  uid: string;
+}
+
+const IndexPage: React.FC<IProps> = () => {
+  // const { dispatch, uid } = props;
+
   const login = async () => {
     const data = await request('api/admin/Login/login', {
       method: 'post',
       data: { mobile: 'jy588vip', pwd: '78pteum0p' }
     });
-    window.localStorage.setItem('user', data.data.id);
+    if (data.status === 0) {
+      alert('账号或密码错误');
+    } else {
+      alert('登录成功');
+      window.localStorage.setItem('user', data.data.id);
+    }
   };
 
   const isMobile = () => {
@@ -43,12 +57,21 @@ export default function IndexPage() {
     }
   };
 
+  const handleError = () => {
+    throw new Error('DotA');
+  };
+
   return (
     <div>
       <h1 className={styles.title}>Page index</h1>
       <Button onClick={login}>登录</Button>
       <Button onClick={getInfo}>获取信息</Button>
       <Button onClick={isMobile}>是否是移动端</Button>
+      <Button onClick={handleError}>手动异常</Button>
     </div>
   );
-}
+};
+
+export default connect((state: { userInfo: UserInfoState }) => ({
+  uid: state.userInfo.uid
+}))(IndexPage);
