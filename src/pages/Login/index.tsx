@@ -155,7 +155,8 @@ const Login: React.FC<IProps> = (props) => {
       <div className={style.container}>
         {/*<LoginHeader myRef={myRef} entry="wait" />*/}
         <div className={style.content}>
-          <div className={style.title}>视频直播互联网管理系统</div>
+          {/*<div className={style.title}>视频直播互联网管理系统</div>*/}
+          <div className={style.title}>有你更精彩</div>
           <Button
             type="primary"
             className={style.loginButton}
@@ -173,6 +174,7 @@ const Login: React.FC<IProps> = (props) => {
         title="用户登录"
         width={370}
         centered
+        maskClosable={false}
         wrapClassName={style.loginModal}
         footer={null}
         destroyOnClose

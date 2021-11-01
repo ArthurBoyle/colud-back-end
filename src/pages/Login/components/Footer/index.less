@@ -2,41 +2,60 @@
   position: absolute;
   right: 58px;
   bottom: 0;
-  width: 32px;
+  width: 36px;
   height: 240px;
-  //background: skyblue;
-  .img1 {
-    position: relative;
-    top: 8px;
-    padding: 7px;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
+  .contactUs {
+    :global(.ant-popover-placement-left) {
+      top: -7px !important;
+    }
+    /*.ant-popover-content {
+      .ant-popover-arrow {
+        top: 16px;
+      }
+      .ant-popover-inner {
+        border-radius: 8px;
+      }
+      .ant-popover-inner-content {
+        padding: 24px;
+      }
+    }*/
+    .contactUsImg {
+      margin: 8px 0 0 2px;
+      i {
+        padding: 7px;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+      }
+    }
+    .contactUsText {
+      width: 24px;
+      height: 32px;
+      margin: 20px auto 0;
+      color: white;
+      font-size: 12px;
+      line-height: 16px;
+    }
   }
-  .text1 {
-    position: relative;
-    top: 20px;
-    width: 24px;
-    height: 32px;
-    margin: 0 auto;
-    color: white;
-    font-size: 12px;
-    line-height: 16px;
-  }
-  .img2 {
-    position: relative;
-    top: 50px;
-    padding: 7px;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-  }
-  .text2 {
-    position: relative;
-    top: 63px;
-    color: white;
-    font-size: 12px;
-    line-height: 16px;
-    text-align: center;
+  .weChat {
+    :global(.ant-popover-placement-left) {
+      top: 92px !important;
+    }
+    .wechatImg {
+      margin: 30px 0 0 2px;
+      i {
+        padding: 7px;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+      }
+    }
+    .wechatText {
+      margin-top: 20px;
+      color: white;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: center;
+    }
   }
 }
