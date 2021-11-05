@@ -4,58 +4,112 @@
   bottom: 0;
   width: 36px;
   height: 240px;
+  color: white;
   .contactUs {
-    :global(.ant-popover-placement-left) {
-      top: -7px !important;
-    }
-    /*.ant-popover-content {
-      .ant-popover-arrow {
-        top: 16px;
-      }
-      .ant-popover-inner {
-        border-radius: 8px;
-      }
-      .ant-popover-inner-content {
-        padding: 24px;
-      }
-    }*/
-    .contactUsImg {
+    .img {
       margin: 8px 0 0 2px;
       i {
         padding: 7px;
-        color: white;
         border: 1px solid rgba(255, 255, 255, 0.5);
         border-radius: 50%;
       }
     }
-    .contactUsText {
+    .text {
       width: 24px;
-      height: 32px;
       margin: 20px auto 0;
-      color: white;
       font-size: 12px;
       line-height: 16px;
+    }
+    :global(.ant-popover-placement-leftTop) {
+      top: -18px !important;
+      :global(.ant-popover-content) {
+        :global(.ant-popover-arrow) {
+          top: 30px;
+          right: 2px;
+        }
+        :global(.ant-popover-inner) {
+          border-radius: 8px;
+          :global(.ant-popover-inner-content) {
+            padding: 24px;
+            .content {
+              > div {
+                .phone {
+                  position: relative;
+                  top: 2px;
+                  width: 16px;
+                  height: 16px;
+                }
+                .eMail {
+                  position: relative;
+                  left: 1px;
+                  width: 14px;
+                  height: 9px;
+                }
+                .text {
+                  position: relative;
+                  color: rgba(0, 0, 0, 0.85);
+                  font-size: 14px;
+                }
+                .textPhone {
+                  margin-left: 5px;
+                }
+                .textEMali {
+                  margin-left: 7px;
+                }
+                margin-bottom: 14px;
+                &:last-child {
+                  margin-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
   .weChat {
-    :global(.ant-popover-placement-left) {
-      top: 92px !important;
-    }
-    .wechatImg {
+    .img {
       margin: 30px 0 0 2px;
       i {
         padding: 7px;
-        color: white;
         border: 1px solid rgba(255, 255, 255, 0.5);
         border-radius: 50%;
       }
     }
-    .wechatText {
+    .text {
       margin-top: 20px;
-      color: white;
       font-size: 12px;
       line-height: 16px;
       text-align: center;
+    }
+    :global(.ant-popover-placement-leftBottom) {
+      top: -50px !important;
+      :global(.ant-popover-content) {
+        :global(.ant-popover-arrow) {
+          bottom: 75px;
+        }
+        :global(.ant-popover-inner) {
+          border-radius: 8px;
+        }
+        :global(.ant-popover-inner-content) {
+          padding: 16px;
+          .content {
+            img {
+              width: 160px;
+              height: 160px;
+              margin-top: 18px;
+            }
+            div {
+              width: 160px;
+              padding-bottom: 8px;
+              font-weight: bold;
+              font-size: 16px;
+              line-height: 16px;
+              border-bottom: 1px solid #eeeeee;
+            }
+          }
+        }
+      }
     }
   }
 }
