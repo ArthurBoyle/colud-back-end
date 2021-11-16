@@ -47,116 +47,11 @@ const Login: React.FC<IProps> = (props) => {
   };
 
   return (
-    /*<>
-      <Container>
-        <Carousel ref={myRef} autoplay autoplaySpeed={30000} dots={false}>
-          {bjImageList.map((url, index) => {
-            return (
-              <div key={-index}>
-                <div
-                  style={{
-                    width: '100vw',
-                    height: '100vh',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    backgroundOrigin: 'center',
-                    backgroundImage: `url(${url})`,
-                    backgroundSize: '100% 100%'
-                  }}
-                />
-              </div>
-            );
-          })}
-        </Carousel>
-        <Content>
-          <LoginHeader myRef={myRef} entry="wait" />
-          <div className="bgContent">
-            <div>
-              <img src={mainText} alt="" />
-            </div>
-            <Button
-              type="primary"
-              className="loginButton"
-              onClick={() => {
-                setVisible(() => true);
-              }}
-            >
-              登录
-            </Button>
-          </div>
-          <LoginFooter />
-        </Content>
-      </Container>
-      <Modal
-        visible={visible}
-        width={370}
-        destroyOnClose
-        footer={null}
-        onCancel={() => setVisible(() => false)}
-        closable={true}
-        centered={true}
-        bodyStyle={{
-          width: 370,
-          height: 332,
-          background: '#ffffff',
-          borderRadius: 10,
-          boxShadow: '0 2px 37px 0 rgba(0, 0, 0, 0.26)',
-          padding: 32
-        }}
-      >
-        <ModalStyle>
-          <Form form={form} preserve={false}>
-            <div className="title">用户登录</div>
-            <div className="form">
-              <Form.Item
-                name="mobile"
-                rules={[
-                  {
-                    required: true,
-                    message: '请输入手机号'
-                  },
-                  {
-                    type: 'string',
-                    message: '请输入正确的手机号码！',
-                    pattern: Pattern.mobile.reg
-                  }
-                ]}
-              >
-                <Input style={{ fontSize: 14 }} size="large" placeholder="请输入手机号" />
-              </Form.Item>
-              <Form.Item
-                name="code"
-                rules={[
-                  {
-                    required: true,
-                    message: '请输入验证码'
-                  }
-                ]}
-              >
-                <SendCodeInput
-                  size="large"
-                  sendType={SendType.Hire}
-                  placeholder="请输入验证码"
-                  onClick={onClick}
-                  spanStyle={{ marginLeft: 16 }}
-                />
-              </Form.Item>
-              <Form.Item>
-                <Button loading={loading} block type="primary" onClick={onLogin} htmlType="submit">
-                  登录
-                </Button>
-              </Form.Item>
-            </div>
-          </Form>
-        </ModalStyle>
-      </Modal>
-    </>*/
     <>
       <div className={style.container}>
         {/*<LoginHeader myRef={myRef} entry="wait" />*/}
         <div className={style.content}>
-          {/*<div className={style.title}>视频直播互联网管理系统</div>*/}
-          <div className={style.title}>有你更精彩</div>
+          <div className={style.title}>视频直播互联网管理系统</div>
           <Button
             type="primary"
             className={style.loginButton}
