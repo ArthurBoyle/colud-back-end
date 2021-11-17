@@ -89,7 +89,7 @@ const LiveList: React.FC<IProps> = (props) => {
     <Layout>
       <Header className={style.header}>
         <span>欢迎您，用户{uid}</span>
-        <span className="iconfont iconiconfonticon2" style={{ color: 'rgba(0, 0, 0, 0.65)' }} />
+        <span className="iconfont iconiconfonticon2" />
       </Header>
       <Content className={style.content}>
         <Spin spinning={pageLoading}>
