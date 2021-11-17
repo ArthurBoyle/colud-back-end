@@ -1,34 +1,81 @@
-import React, { useEffect } from 'react';
-import { request } from 'umi';
-import { Layout, Form, Card, Avatar, Row, Col } from 'antd';
+import React, { useEffect, useCallback } from 'react';
+import { connect } from 'umi';
+import { useImmer } from 'use-immer';
+import { Layout, Form, Card, Avatar, Modal, message, Spin, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { State as UserInfoState } from '@/models/userInfo';
+import { getPageData, deleteData } from './service';
 import style from './index.less';
 
 const { Header, Content, Footer } = Layout;
 const { Item, List } = Form;
 const { Meta } = Card;
 
-const LiveList: React.FC = () => {
+interface IProps {
+  uid: string;
+}
+
+const LiveList: React.FC<IProps> = (props) => {
+  const { uid } = props;
+
   const [form] = Form.useForm();
-  let data: any[] = [];
+
+  const [pageLoading, setPageLoading] = useImmer<boolean>(false);
+
+  const getData = useCallback(async () => {
+    try {
+      setPageLoading(() => true);
+      const data = await getPageData(uid);
+      form.setFieldsValue({ dataList: data.reverse() });
+    } finally {
+      setPageLoading(() => false);
+    }
+  }, [form, setPageLoading, uid]);
 
   useEffect(() => {
     (async function iife() {
       await getData();
     })();
-  }, []);
+  }, [getData]);
 
-  const getData = async () => {
-    data = await request('api/admin/System/find_c', {
-      method: 'post',
-      data: { uid: window.localStorage.getItem('user') }
+  const handleDelete = (sid: string) => {
+    Modal.confirm({
+      title: '删除',
+      content: '确定删除此活动吗？',
+      onOk: () => {
+        return new Promise<void>(async (resolve, reject) => {
+          try {
+            const { status } = await deleteData(uid, sid);
+            if (status === 1) {
+              resolve();
+              message.success('删除成功');
+              await getData();
+            } else if (status === 0) {
+              reject();
+              message.error('删除失败');
+            }
+          } catch {
+            reject();
+          }
+        });
+      }
     });
-    form.setFieldsValue({ dataList: data });
   };
 
   const ShowCard = (params: any) => {
     return (
-      <Card actions={[<div>设置</div>, <div>删除</div>]}>
+      <Card
+        actions={[
+          <div>设置</div>,
+          <div
+            onClick={() => {
+              handleDelete(params.sid);
+            }}
+          >
+            删除
+          </div>
+        ]}
+      >
         <Meta
           avatar={<Avatar size={64} src="https://joeschmoe.io/api/v1/random" />}
           title="活动名称"
@@ -41,37 +88,47 @@ const LiveList: React.FC = () => {
   return (
     <Layout>
       <Header className={style.header}>
-        <span>欢迎您，用户{window.localStorage.getItem('user')}</span>
+        <span>欢迎您，用户{uid}</span>
         <span className="iconfont iconiconfonticon2" style={{ color: 'rgba(0, 0, 0, 0.65)' }} />
       </Header>
       <Content className={style.content}>
-        <Form form={form}>
-          <List name="dataList">
-            {(fields) => {
-              return (
-                <Row gutter={8}>
-                  <Col xs={24} sm={12} lg={8} xl={6}>
-                    <Item>
-                      <Card className={style.newCard} onClick={() => alert('新建果冻')}>
-                        <PlusOutlined />
-                        <div>新建直播</div>
-                      </Card>
-                    </Item>
-                  </Col>
-                  {fields.map((item) => {
-                    return (
-                      <Col key={item.key} xs={24} sm={12} lg={8} xl={6}>
-                        <Item name={[item.name, 'channel_name']}>
-                          <ShowCard />
-                        </Item>
-                      </Col>
-                    );
-                  })}
-                </Row>
-              );
-            }}
-          </List>
-        </Form>
+        <Spin spinning={pageLoading}>
+          <Form form={form}>
+            <List name="dataList">
+              {(fields) => {
+                return (
+                  <Row gutter={8}>
+                    <Col xs={24} sm={12} lg={8} xl={6}>
+                      <Item>
+                        <Card className={style.newCard} onClick={() => alert('新建果冻')}>
+                          <PlusOutlined />
+                          <div>新建直播</div>
+                        </Card>
+                      </Item>
+                    </Col>
+                    {fields.map((item) => {
+                      return (
+                        <Col key={item.key} xs={24} sm={12} lg={8} xl={6}>
+                          <Item
+                            name={[item.name, 'channel_name']}
+                            getValueProps={(value) => {
+                              return {
+                                value,
+                                sid: form.getFieldValue(['dataList', item.name, 'sid'])
+                              };
+                            }}
+                          >
+                            <ShowCard />
+                          </Item>
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                );
+              }}
+            </List>
+          </Form>
+        </Spin>
       </Content>
       <Footer className={style.footer}>
         <div className={style.footerLinks}>
@@ -118,4 +175,6 @@ const LiveList: React.FC = () => {
   );
 };
 
-export default LiveList;
+export default connect((state: { userInfo: UserInfoState }) => ({
+  uid: state.userInfo.uid
+}))(LiveList);
