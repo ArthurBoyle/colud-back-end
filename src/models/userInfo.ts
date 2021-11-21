@@ -33,6 +33,11 @@ const model: Model = {
       } else {
         callback && callback();
       }
+    },
+    clearUserInfo(state: State) {
+      window.localStorage.clear();
+      state.uid = '';
+      history.replace('/login');
     }
   }
 };

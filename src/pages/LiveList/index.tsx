@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { useImmer } from 'use-immer';
 import { Layout, Form, Card, Avatar, Modal, message, Spin, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
@@ -12,11 +12,12 @@ const { Item, List } = Form;
 const { Meta } = Card;
 
 interface IProps {
+  dispatch: Dispatch;
   uid: string;
 }
 
 const LiveList: React.FC<IProps> = (props) => {
-  const { uid } = props;
+  const { dispatch, uid } = props;
 
   const [form] = Form.useForm();
 
@@ -37,6 +38,18 @@ const LiveList: React.FC<IProps> = (props) => {
       await getData();
     })();
   }, [getData]);
+
+  const handleExit = () => {
+    Modal.confirm({
+      title: '退出',
+      content: '确定退出当前用户？',
+      onOk: () => {
+        dispatch({
+          type: 'userInfo/clearUserInfo'
+        });
+      }
+    });
+  };
 
   const handleDelete = (sid: string) => {
     Modal.confirm({
@@ -89,7 +102,7 @@ const LiveList: React.FC<IProps> = (props) => {
     <Layout>
       <Header className={style.header}>
         <span>欢迎您，用户{uid}</span>
-        <span className="iconfont iconiconfonticon2" />
+        <span className="iconfont iconiconfonticon2" onClick={handleExit} />
       </Header>
       <Content className={style.content}>
         <Spin spinning={pageLoading}>
