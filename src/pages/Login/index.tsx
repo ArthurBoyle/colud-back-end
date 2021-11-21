@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, Dispatch } from 'umi';
+import { connect, Dispatch, Loading } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button, Modal, Form, Input, message } from 'antd';
 import Footer from './components/Footer';
@@ -9,10 +9,11 @@ const { Item } = Form;
 
 interface IProps {
   dispatch: Dispatch;
+  loading: boolean | undefined;
 }
 
 const Login: React.FC<IProps> = (props) => {
-  const { dispatch } = props;
+  const { dispatch, loading } = props;
 
   const [form] = Form.useForm();
 
@@ -85,7 +86,7 @@ const Login: React.FC<IProps> = (props) => {
             <Input.Password placeholder="请输入密码" />
           </Item>
         </Form>
-        <Button type="primary" block onClick={handleLogin}>
+        <Button type="primary" block onClick={handleLogin} loading={loading}>
           登录
         </Button>
       </Modal>
@@ -93,4 +94,6 @@ const Login: React.FC<IProps> = (props) => {
   );
 };
 
-export default connect()(Login);
+export default connect((state: { loading: Loading }) => ({
+  loading: state.loading.effects['userInfo/login']
+}))(Login);
