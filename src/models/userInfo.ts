@@ -29,7 +29,6 @@ const model: Model = {
     getUserInfo(state: State, { callback }) {
       if (window.localStorage.getItem('user') !== null) {
         state.uid = <string>window.localStorage.getItem('user');
-        history.replace('/liveList');
       } else {
         callback && callback();
       }

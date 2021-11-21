@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, Dispatch, Loading } from 'umi';
+import { connect, history, Dispatch, Loading } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button, Modal, Form, Input, message } from 'antd';
 import Footer from './components/Footer';
@@ -23,6 +23,7 @@ const Login: React.FC<IProps> = (props) => {
     dispatch({
       type: 'userInfo/getUserInfo'
     });
+    history.replace('/liveList');
   }, [dispatch]);
 
   const handleLogin = async () => {
