@@ -3,6 +3,7 @@ import { connect, Dispatch } from 'umi';
 import { useImmer } from 'use-immer';
 import { Layout, Form, Card, Avatar, Modal, message, Spin, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import NewList from './components/NewList';
 import { State as UserInfoState } from '@/models/userInfo';
 import { getPageData, deleteData } from './service';
 import style from './index.less';
@@ -22,6 +23,7 @@ const LiveList: React.FC<IProps> = (props) => {
   const [form] = Form.useForm();
 
   const [pageLoading, setPageLoading] = useImmer<boolean>(false);
+  const [newListModal, setNewListModal] = useImmer<boolean>(false);
 
   const getData = useCallback(async () => {
     try {
@@ -113,7 +115,12 @@ const LiveList: React.FC<IProps> = (props) => {
                   <Row gutter={8}>
                     <Col xs={24} sm={12} lg={8} xl={6}>
                       <Item>
-                        <Card className={style.newCard} onClick={() => alert('新建果冻')}>
+                        <Card
+                          className={style.newCard}
+                          onClick={() => {
+                            setNewListModal(true);
+                          }}
+                        >
                           <PlusOutlined />
                           <div>新建直播</div>
                         </Card>
@@ -184,6 +191,14 @@ const LiveList: React.FC<IProps> = (props) => {
           2021 蚂蚁集团体验技术部出品
         </div>
       </Footer>
+      <NewList
+        visible={newListModal}
+        uid={uid}
+        getData={getData}
+        onCancel={() => {
+          setNewListModal(false);
+        }}
+      />
     </Layout>
   );
 };
