@@ -3,6 +3,7 @@ import { connect, history, Dispatch, Loading } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button, Modal, Form, Input, message } from 'antd';
 import Footer from './components/Footer';
+import { State as UserInfoState } from '@/models/userInfo';
 import style from './index.less';
 
 const { Item } = Form;
@@ -10,10 +11,11 @@ const { Item } = Form;
 interface IProps {
   dispatch: Dispatch;
   loading: boolean | undefined;
+  uid: string;
 }
 
 const Login: React.FC<IProps> = (props) => {
-  const { dispatch, loading } = props;
+  const { dispatch, loading, uid } = props;
 
   const [form] = Form.useForm();
 
@@ -23,8 +25,10 @@ const Login: React.FC<IProps> = (props) => {
     dispatch({
       type: 'userInfo/getUserInfo'
     });
-    history.replace('/liveList');
-  }, [dispatch]);
+    if (uid) {
+      history.replace('/liveList');
+    }
+  }, [dispatch, uid]);
 
   const handleLogin = async () => {
     const params = await form.validateFields();
@@ -95,6 +99,7 @@ const Login: React.FC<IProps> = (props) => {
   );
 };
 
-export default connect((state: { loading: Loading }) => ({
-  loading: state.loading.effects['userInfo/login']
+export default connect((state: { loading: Loading; userInfo: UserInfoState }) => ({
+  loading: state.loading.effects['userInfo/login'],
+  uid: state.userInfo.uid
 }))(Login);
