@@ -1,5 +1,10 @@
 const Routes = [
   {
+    title: '首页',
+    path: '/',
+    component: '@/pages/index'
+  },
+  {
     path: '/',
     component: '@/layouts/BaseLayout',
     routes: [
@@ -14,9 +19,15 @@ const Routes = [
         component: '@/pages/LiveList'
       },
       {
-        title: '首页',
         path: '/',
-        component: '@/pages/index'
+        component: '@/layouts/ConfigLayout',
+        routes: [
+          {
+            title: '测试',
+            path: '/test',
+            component: '@/pages/liveConfig/Test'
+          }
+        ]
       }
       /*{
         path: '/no/auth',
