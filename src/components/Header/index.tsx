@@ -32,7 +32,7 @@ const Header: React.FC<IProps> = (props) => {
   };
 
   return (
-    <Layout.Header className={`${style.header} ${hasScrollbar() ? style.scrollHeader : null}`}>
+    <Layout.Header className={`${style.header} ${hasScrollbar() ? style.scrollHeader : ''}`}>
       <span>欢迎您，用户{uid}</span>
       <span className="iconfont iconiconfonticon2" onClick={handleExit} />
     </Layout.Header>

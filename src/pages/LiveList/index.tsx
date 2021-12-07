@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { connect } from 'umi';
+import { connect, history } from 'umi';
 import { useImmer } from 'use-immer';
 import { Layout, Form, Card, Avatar, Modal, message, Spin, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
@@ -70,7 +70,13 @@ const LiveList: React.FC<IProps> = (props) => {
     return (
       <Card
         actions={[
-          <div>设置</div>,
+          <div
+            onClick={() => {
+              history.push('/chat');
+            }}
+          >
+            设置
+          </div>,
           <div
             onClick={() => {
               handleDelete(params.sid);

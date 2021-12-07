@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'umi';
+import { connect, history } from 'umi';
 import { Layout, Menu } from 'antd';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -32,8 +32,16 @@ const ConfigLayout: React.FC<IProps> = (props) => {
             paddingTop: 12
           }}
         >
+          <Menu.Item
+            key="1"
+            onClick={() => {
+              history.push('/chat');
+            }}
+          >
+            option1
+          </Menu.Item>
           <Menu.SubMenu key="sub1" title="subnav 1">
-            <Menu.Item key="1">option1</Menu.Item>
+            <Menu.Item key="0">option1</Menu.Item>
             <Menu.Item key="2">option2</Menu.Item>
             <Menu.Item key="3">option3</Menu.Item>
             <Menu.Item key="4">option4</Menu.Item>
@@ -59,7 +67,9 @@ const ConfigLayout: React.FC<IProps> = (props) => {
         </Menu>
       </Layout.Sider>
       <Layout style={{ marginTop: 48, marginLeft: 200 }}>
-        <Layout.Content style={{ padding: 24 }}>{props.children}</Layout.Content>
+        <Layout.Content style={{ padding: 24, minHeight: 'calc(100vh - 148px)' }}>
+          {props.children}
+        </Layout.Content>
         <Footer />
       </Layout>
     </Layout>
