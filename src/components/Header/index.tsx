@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'umi';
-import { Layout, Modal } from 'antd';
+import { Modal } from 'antd';
 import style from './index.less';
 
 interface IProps {
@@ -32,10 +32,10 @@ const Header: React.FC<IProps> = (props) => {
   };
 
   return (
-    <Layout.Header className={`${style.header} ${hasScrollbar() ? style.scrollHeader : ''}`}>
+    <div className={`${style.header} ${hasScrollbar() ? style.scrollHeader : ''}`}>
       <span>欢迎您，用户{uid}</span>
       <span className="iconfont iconiconfonticon2" onClick={handleExit} />
-    </Layout.Header>
+    </div>
   );
 };
 
