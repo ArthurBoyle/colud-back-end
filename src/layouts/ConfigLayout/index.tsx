@@ -4,6 +4,7 @@ import { Layout, Menu } from 'antd';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { State as UserInfoState } from '@/models/userInfo';
+import style from './index.less';
 
 interface IProps {
   uid: string;
@@ -15,22 +16,12 @@ const ConfigLayout: React.FC<IProps> = (props) => {
   return (
     <Layout>
       <Header uid={uid} pageLoading={false} />
-      <Layout.Sider
-        style={{
-          position: 'fixed',
-          top: 48,
-          height: '100%',
-          boxShadow: '2px 0 8px 0 rgb(29 35 41 / 5%)'
-        }}
-      >
+      <Layout.Sider className={style.sider}>
         <Menu
           mode="inline"
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
-          style={{
-            height: '100%',
-            paddingTop: 12
-          }}
+          className={style.menu}
         >
           <Menu.Item
             key="1"
@@ -66,10 +57,8 @@ const ConfigLayout: React.FC<IProps> = (props) => {
           </Menu.SubMenu>
         </Menu>
       </Layout.Sider>
-      <Layout style={{ marginTop: 48, marginLeft: 200 }}>
-        <Layout.Content style={{ padding: 24, minHeight: 'calc(100vh - 148px)' }}>
-          {props.children}
-        </Layout.Content>
+      <Layout className={style.contentLayout}>
+        <Layout.Content className={style.content}>{props.children}</Layout.Content>
         <Footer />
       </Layout>
     </Layout>
