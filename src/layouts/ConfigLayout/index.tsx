@@ -13,18 +13,15 @@ interface IProps {
 const ConfigLayout: React.FC<IProps> = (props) => {
   const { uid } = props;
 
+  const { pathname } = history.location;
+
   return (
     <Layout>
       <Header uid={uid} pageLoading={false} />
       <Layout.Sider className={style.sider}>
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          className={style.menu}
-        >
+        <Menu className={style.menu} mode="inline" selectedKeys={[pathname]}>
           <Menu.Item
-            key="1"
+            key="/chat"
             onClick={() => {
               history.push('/chat');
             }}
