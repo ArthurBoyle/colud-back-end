@@ -4,7 +4,7 @@ import style from './index.less';
 interface IProps {
   fontName: string;
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Icon: React.FC<IProps> = (props) => {
