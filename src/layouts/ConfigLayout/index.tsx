@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect, history } from 'umi';
+import React, { useEffect } from 'react';
+import { connect, history, Dispatch } from 'umi';
 import { Layout, Menu } from 'antd';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,13 +7,20 @@ import { State as UserInfoState } from '@/models/userInfo';
 import style from './index.less';
 
 interface IProps {
+  dispatch: Dispatch;
   uid: string;
 }
 
 const ConfigLayout: React.FC<IProps> = (props) => {
-  const { uid } = props;
+  const { dispatch, uid } = props;
 
   const { pathname } = history.location;
+
+  useEffect(() => {
+    dispatch({
+      type: 'userInfo/getSid'
+    });
+  }, [dispatch]);
 
   return (
     <Layout>
@@ -26,7 +33,7 @@ const ConfigLayout: React.FC<IProps> = (props) => {
               history.push('/chat');
             }}
           >
-            option1
+            聊天管理
           </Menu.Item>
           <Menu.SubMenu key="sub1" title="subnav 1">
             <Menu.Item key="0">option1</Menu.Item>

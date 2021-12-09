@@ -3,6 +3,7 @@ import { login } from '@/services/userInfo';
 
 export interface State {
   uid: string;
+  sid: string;
 }
 
 interface Model {
@@ -14,7 +15,7 @@ interface Model {
 
 const model: Model = {
   nameSpace: 'userInfo',
-  state: { uid: '' },
+  state: { uid: '', sid: '' },
   effects: {
     *login({ payload, callback }, { call }) {
       try {
@@ -31,6 +32,11 @@ const model: Model = {
         state.uid = <string>window.localStorage.getItem('user');
       } else {
         callback && callback();
+      }
+    },
+    getSid(state: State) {
+      if (window.localStorage.getItem('sid') !== null) {
+        state.sid = <string>window.localStorage.getItem('sid');
       }
     },
     clearUserInfo(state: State) {

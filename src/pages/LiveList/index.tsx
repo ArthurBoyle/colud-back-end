@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { connect, history } from 'umi';
+import { connect, history, Dispatch } from 'umi';
 import { useImmer } from 'use-immer';
 import { Layout, Form, Card, Avatar, Modal, message, Spin, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
@@ -15,11 +15,12 @@ const { Item, List } = Form;
 const { Meta } = Card;
 
 interface IProps {
+  dispatch: Dispatch;
   uid: string;
 }
 
 const LiveList: React.FC<IProps> = (props) => {
-  const { uid } = props;
+  const { dispatch, uid } = props;
 
   const [form] = Form.useForm();
 
@@ -67,11 +68,16 @@ const LiveList: React.FC<IProps> = (props) => {
   };
 
   const ShowCard = (params: any) => {
+    const { sid } = params;
     return (
       <Card
         actions={[
           <div
             onClick={() => {
+              window.localStorage.setItem('sid', sid);
+              dispatch({
+                type: 'userInfo/getSid'
+              });
               history.push('/chat');
             }}
           >
@@ -79,7 +85,7 @@ const LiveList: React.FC<IProps> = (props) => {
           </div>,
           <div
             onClick={() => {
-              handleDelete(params.sid);
+              handleDelete(sid);
             }}
           >
             删除
