@@ -1,5 +1,4 @@
-import { history, Effect, Reducer } from 'umi';
-import { login } from '@/services/userInfo';
+import { history, Reducer } from 'umi';
 
 export interface State {
   uid: string;
@@ -7,25 +6,14 @@ export interface State {
 }
 
 interface Model {
-  nameSpace: string;
+  namespace: string;
   state: State;
-  effects: Record<string, Effect>;
   reducers: Record<string, Reducer>;
 }
 
 const model: Model = {
-  nameSpace: 'userInfo',
+  namespace: 'userInfo',
   state: { uid: '', sid: '' },
-  effects: {
-    *login({ payload, callback }, { call }) {
-      try {
-        const result = yield call(login, payload);
-        callback(result);
-      } catch (error) {
-        callback(false);
-      }
-    }
-  },
   reducers: {
     getUserInfo(state: State, { callback }) {
       if (window.localStorage.getItem('user') !== null) {

@@ -3,7 +3,7 @@ import { connect, history, Dispatch, Loading } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button, Modal, Form, Input, message } from 'antd';
 import Footer from './components/Footer';
-import { State as UserInfoState } from '@/models/userInfo';
+import { State } from '@/models/userInfo';
 import style from './index.less';
 
 const { Item } = Form;
@@ -12,6 +12,11 @@ interface IProps {
   dispatch: Dispatch;
   loading: boolean | undefined;
   uid: string;
+}
+
+interface IState {
+  loading: Loading;
+  userInfo: State;
 }
 
 const Login: React.FC<IProps> = (props) => {
@@ -33,7 +38,7 @@ const Login: React.FC<IProps> = (props) => {
   const handleLogin = async () => {
     const params = await form.validateFields();
     dispatch({
-      type: 'userInfo/login',
+      type: 'login/login',
       payload: params,
       callback: (result: any) => {
         if (result) {
@@ -99,7 +104,7 @@ const Login: React.FC<IProps> = (props) => {
   );
 };
 
-export default connect((state: { loading: Loading; userInfo: UserInfoState }) => ({
-  loading: state.loading.effects['userInfo/login'],
-  uid: state.userInfo.uid
+export default connect(({ loading, userInfo }: IState) => ({
+  loading: loading.effects['login/login'],
+  uid: userInfo.uid
 }))(Login);
