@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, history, Dispatch } from 'umi';
+import { history, useDispatch } from 'umi';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
@@ -7,12 +7,8 @@ import 'dayjs/locale/zh-cn';
 
 dayjs.locale('zh-cn');
 
-interface IProps {
-  dispatch: Dispatch;
-}
-
-const BaseLayout: React.FC<IProps> = (props) => {
-  const { dispatch } = props;
+const BaseLayout: React.FC = (props) => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({
@@ -26,4 +22,4 @@ const BaseLayout: React.FC<IProps> = (props) => {
   return <ConfigProvider locale={zhCN}>{props.children}</ConfigProvider>;
 };
 
-export default connect()(BaseLayout);
+export default BaseLayout;
