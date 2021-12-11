@@ -35,8 +35,15 @@ const ConfigLayout: React.FC<IProps> = (props) => {
           >
             聊天管理
           </Menu.Item>
-          <Menu.SubMenu key="sub1" title="subnav 1">
-            <Menu.Item key="0">option1</Menu.Item>
+          <Menu.SubMenu key="basicSettings" title="基础设置">
+            <Menu.Item
+              key="/play-address"
+              onClick={() => {
+                history.push('/play-address');
+              }}
+            >
+              播放地址设置
+            </Menu.Item>
             <Menu.Item key="2">option2</Menu.Item>
             <Menu.Item key="3">option3</Menu.Item>
             <Menu.Item key="4">option4</Menu.Item>
