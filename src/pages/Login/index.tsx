@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { connect, history, Dispatch, Loading } from 'umi';
+import { connect, Dispatch, Loading } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button, Modal, Form, Input, message } from 'antd';
 import Footer from './components/Footer';
-import { State } from '@/models/userInfo';
 import style from './index.less';
 
 const { Item } = Form;
@@ -11,16 +10,14 @@ const { Item } = Form;
 interface IProps {
   dispatch: Dispatch;
   loading: boolean | undefined;
-  uid: string;
 }
 
 interface IState {
   loading: Loading;
-  userInfo: State;
 }
 
 const Login: React.FC<IProps> = (props) => {
-  const { dispatch, loading, uid } = props;
+  const { dispatch, loading } = props;
 
   const [form] = Form.useForm();
 
@@ -30,10 +27,7 @@ const Login: React.FC<IProps> = (props) => {
     dispatch({
       type: 'userInfo/getUserInfo'
     });
-    if (uid) {
-      history.replace('/liveList');
-    }
-  }, [dispatch, uid]);
+  }, [dispatch]);
 
   const handleLogin = async () => {
     const params = await form.validateFields();
@@ -104,7 +98,6 @@ const Login: React.FC<IProps> = (props) => {
   );
 };
 
-export default connect(({ loading, userInfo }: IState) => ({
-  loading: loading.effects['login/login'],
-  uid: userInfo.uid
+export default connect(({ loading }: IState) => ({
+  loading: loading.effects['login/login']
 }))(Login);

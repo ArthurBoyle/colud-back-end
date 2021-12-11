@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { history, useDispatch } from 'umi';
+import { useDispatch } from 'umi';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
@@ -12,10 +12,7 @@ const BaseLayout: React.FC = (props) => {
 
   useEffect(() => {
     dispatch({
-      type: 'userInfo/getUserInfo',
-      callback: () => {
-        history.replace('/login');
-      }
+      type: 'userInfo/getUserInfo'
     });
   }, [dispatch]);
 
