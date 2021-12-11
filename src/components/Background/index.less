@@ -1,6 +1,5 @@
 .container {
   //min-width: 1088px;
-  position: relative;
   padding: 24px 24px 20px 24px;
   background-color: #fff;
   border-radius: 2px;
@@ -19,9 +18,14 @@
   }*/
 
   :global(.page_title) {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-weight: bold;
     font-size: 20px;
+  }
+  :global(.ant-btn) {
+    left: 50%;
+    padding: 4px 20px;
+    transform: translateX(-50%);
   }
 
   /*.dynamic_search_form {
