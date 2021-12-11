@@ -15,13 +15,13 @@ const model: Model = {
   namespace: 'userInfo',
   state: { uid: '', sid: '' },
   reducers: {
-    getUserInfo(state: State) {
+    getUserInfo(state: State, { callback }) {
       if (window.localStorage.getItem('user') === null) {
         window.localStorage.clear();
         history.replace('/login');
       } else {
         state.uid = <string>window.localStorage.getItem('user');
-        history.replace('/liveList');
+        callback && callback();
       }
     },
     getSid(state: State) {

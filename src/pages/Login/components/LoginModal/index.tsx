@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'umi';
+import { useDispatch, history } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button, Form, Input, message, Modal } from 'antd';
 import { login } from './service';
@@ -31,7 +31,10 @@ const LoginModal: React.FC<IProps> = (props) => {
       message.success('登录成功');
       window.localStorage.setItem('user', data.id);
       dispatch({
-        type: 'userInfo/getUserInfo'
+        type: 'userInfo/getUserInfo',
+        callback: () => {
+          history.replace('/liveList');
+        }
       });
     }
   };

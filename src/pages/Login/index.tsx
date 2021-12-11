@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'umi';
+import { useDispatch, history } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button } from 'antd';
 import Footer from './components/Footer';
@@ -13,7 +13,10 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     dispatch({
-      type: 'userInfo/getUserInfo'
+      type: 'userInfo/getUserInfo',
+      callback: () => {
+        history.replace('/liveList');
+      }
     });
   }, [dispatch]);
 
