@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     dispatch({
       type: 'userInfo/getUserInfo',
       callback: () => {
-        history.replace('/liveList');
+        history.replace('/live-list');
       }
     });
   }, [dispatch]);

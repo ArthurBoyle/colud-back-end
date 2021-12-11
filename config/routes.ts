@@ -15,7 +15,7 @@ const Routes = [
       },
       {
         title: '直播列表',
-        path: '/liveList',
+        path: '/live-list',
         component: '@/pages/LiveList'
       },
       {
@@ -31,6 +31,11 @@ const Routes = [
             title: '聊天管理',
             path: '/chat',
             component: '@/pages/liveConfig/Chat'
+          },
+          {
+            title: '播放地址设置',
+            path: '/play-address',
+            component: '@/pages/liveConfig/basicSettings/PlayAddress'
           }
         ]
       }

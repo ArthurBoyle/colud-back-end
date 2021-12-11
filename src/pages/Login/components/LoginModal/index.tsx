@@ -33,7 +33,7 @@ const LoginModal: React.FC<IProps> = (props) => {
       dispatch({
         type: 'userInfo/getUserInfo',
         callback: () => {
-          history.replace('/liveList');
+          history.replace('/live-list');
         }
       });
     }
