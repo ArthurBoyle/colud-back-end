@@ -28,13 +28,10 @@ const LiveList: React.FC<IProps> = (props) => {
   const [newListModal, setNewListModal] = useImmer<boolean>(false);
 
   const getData = useCallback(async () => {
-    try {
-      setPageLoading(() => true);
-      const data = await getPageData(uid);
-      form.setFieldsValue({ dataList: data.reverse() });
-    } finally {
-      setPageLoading(() => false);
-    }
+    setPageLoading(true);
+    const data = await getPageData(uid);
+    form.setFieldsValue({ dataList: data.reverse() });
+    setPageLoading(false);
   }, [form, setPageLoading, uid]);
 
   useEffect(() => {
@@ -49,18 +46,14 @@ const LiveList: React.FC<IProps> = (props) => {
       content: '确定删除此活动吗？',
       onOk: () => {
         return new Promise<void>(async (resolve, reject) => {
-          try {
-            const { status } = await deleteData(uid, sid);
-            if (status === 1) {
-              resolve();
-              message.success('删除成功');
-              await getData();
-            } else if (status === 0) {
-              reject();
-              message.error('删除失败');
-            }
-          } catch {
+          const { status } = await deleteData(uid, sid);
+          if (status === 1) {
+            resolve();
+            message.success('删除成功');
+            await getData();
+          } else if (status === 0) {
             reject();
+            message.error('删除失败');
           }
         });
       }

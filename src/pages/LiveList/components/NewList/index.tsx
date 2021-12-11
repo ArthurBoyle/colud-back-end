@@ -29,15 +29,12 @@ const NewList: React.FC<IProps> = (props) => {
       message.info('请阅读并勾选相关协议');
       return;
     }
-    try {
-      setLoading(true);
-      await createActivity(params);
-      message.success('操作成功');
-      onCancel();
-      getData();
-    } finally {
-      setLoading(false);
-    }
+    setLoading(true);
+    await createActivity(params);
+    setLoading(false);
+    message.success('操作成功');
+    onCancel();
+    getData();
   };
 
   return (
