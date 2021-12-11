@@ -1,56 +1,60 @@
 import React, { useCallback, useEffect } from 'react';
-import { connect } from 'umi';
+import { connect, Dispatch, Loading } from 'umi';
 import { Form, Radio, Table, Popconfirm, message } from 'antd';
 import dayjs from 'dayjs';
 import Background from '@/components/Background';
 import Icon from '@/components/Icon';
 import { State as UserInfoState } from '@/models/userInfo';
-import { get_jinyan, send, is_jinyan, delChat } from '@/pages/liveConfig/Chat/service';
-import { useImmer } from 'use-immer';
+import { State as ChatState } from './model';
 
 interface IProps {
+  dispatch: Dispatch;
   sid: string;
+  pageData: any[];
+  pageDataLoading: boolean | undefined;
+}
+
+interface IState {
+  userInfo: UserInfoState;
+  chat: ChatState;
+  loading: Loading;
 }
 
 const Chat: React.FC<IProps> = (props) => {
-  const { sid } = props;
+  const { dispatch, sid, pageData, pageDataLoading } = props;
 
   const [form] = Form.useForm();
 
-  const [tableData, setTableData] = useImmer<{ loading: boolean; dataSource: any[] }>({
-    loading: false,
-    dataSource: []
-  });
-
-  const getForbiddenWord = useCallback(async () => {
-    const data = await get_jinyan(sid);
-    form.setFieldsValue(data);
-  }, [form, sid]);
-
-  const getData = useCallback(async () => {
-    try {
-      setTableData((draft) => {
-        draft.loading = true;
-      });
-      const data = await send(sid);
-      setTableData((draft) => {
-        draft.dataSource = data;
-      });
-    } finally {
-      setTableData((draft) => {
-        draft.loading = false;
-      });
-    }
-  }, [setTableData, sid]);
+  const getPageData = useCallback(() => {
+    dispatch({
+      type: 'chat/getPageData',
+      payload: sid
+    });
+  }, [dispatch, sid]);
 
   useEffect(() => {
-    (async function iife() {
-      await getForbiddenWord();
-    })();
-    (async function iife() {
-      await getData();
-    })();
-  }, [getData, getForbiddenWord]);
+    const getForbiddenWord = () => {
+      dispatch({
+        type: 'chat/getForbiddenWord',
+        payload: sid,
+        callback: (data) => {
+          form.setFieldsValue(data);
+        }
+      });
+    };
+    getForbiddenWord();
+    getPageData();
+  }, [dispatch, form, getPageData, sid]);
+
+  const handleForbiddenWord = (jinyan: number) => {
+    dispatch({
+      type: 'chat/changeForbiddenWord',
+      payload: { sid, jinyan },
+      callback: async () => {
+        message.success('操作成功');
+      }
+    });
+  };
 
   const columns = [
     {
@@ -61,9 +65,15 @@ const Chat: React.FC<IProps> = (props) => {
         return (
           <Popconfirm
             title="确认删除？"
-            onConfirm={async () => {
-              await delChat(record.id);
-              await getData();
+            onConfirm={() => {
+              dispatch({
+                type: 'chat/delChat',
+                payload: record.id,
+                callback: async () => {
+                  message.success('删除成功');
+                  getPageData();
+                }
+              });
             }}
           >
             <Icon fontName="iconshanchu1" title="删除" />
@@ -92,11 +102,6 @@ const Chat: React.FC<IProps> = (props) => {
     }
   ];
 
-  const handleForbiddenWord = async (isForbiddenWord: number) => {
-    await is_jinyan(sid, isForbiddenWord);
-    message.success('操作成功');
-  };
-
   return (
     <Background fillScreen={true} hasFooter={false}>
       <div className="page_title">聊天室管理</div>
@@ -105,16 +110,16 @@ const Chat: React.FC<IProps> = (props) => {
           <Radio.Group>
             <Radio
               value={0}
-              onClick={async () => {
-                await handleForbiddenWord(0);
+              onClick={() => {
+                handleForbiddenWord(0);
               }}
             >
               是
             </Radio>
             <Radio
               value={1}
-              onClick={async () => {
-                await handleForbiddenWord(1);
+              onClick={() => {
+                handleForbiddenWord(1);
               }}
             >
               否
@@ -124,9 +129,9 @@ const Chat: React.FC<IProps> = (props) => {
       </Form>
       <Table
         rowKey="id"
-        loading={tableData.loading}
+        loading={pageDataLoading}
         columns={columns}
-        dataSource={tableData.dataSource}
+        dataSource={pageData}
         scroll={{ y: 523 }}
         pagination={false}
       />
@@ -134,6 +139,8 @@ const Chat: React.FC<IProps> = (props) => {
   );
 };
 
-export default connect((state: { userInfo: UserInfoState }) => ({
-  sid: state.userInfo.sid
+export default connect(({ userInfo, chat, loading }: IState) => ({
+  sid: userInfo.sid,
+  pageData: chat.pageData,
+  pageDataLoading: loading.effects['chat/getPageData']
 }))(Chat);

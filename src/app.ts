@@ -4,7 +4,7 @@ import { message, notification } from 'antd';
 export const dva = {
   config: {
     async onError(e: Error) {
-      await message.error(e.message);
+      message.error(e.message);
     }
   }
 };

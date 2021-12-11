@@ -20,7 +20,8 @@ export const send = (sid: string) => {
   });
 };
 
-export const is_jinyan = (sid: string, jinyan: number) => {
+export const is_jinyan = (params: { sid: string; jinyan: number }) => {
+  const { sid, jinyan } = params;
   return request('api/index/Chatu/is_jinyan', {
     method: 'post',
     data: { sid, jinyan }

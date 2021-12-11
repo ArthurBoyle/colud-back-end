@@ -35,7 +35,7 @@ const LiveList: React.FC<IProps> = (props) => {
   }, [form, setPageLoading, uid]);
 
   useEffect(() => {
-    (async function iife() {
+    (async function () {
       await getData();
     })();
   }, [getData]);
