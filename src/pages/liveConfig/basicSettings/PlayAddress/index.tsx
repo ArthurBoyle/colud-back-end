@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
+import { useImmer } from 'use-immer';
 import { Button, Form, Input, message, Spin } from 'antd';
 import Background from '@/components/Background';
 import { State } from '@/models/userInfo';
-import { getLiveTel, updateLiveTel } from '@/pages/liveConfig/basicSettings/PlayAddress/service';
-import { useImmer } from 'use-immer';
+import { getLiveTel, updateLiveTel } from './service';
 
 const { Item } = Form;
 
@@ -25,14 +25,11 @@ const PlayAddress: React.FC<IProps> = (props) => {
   const [updateLoading, setUpdateLoading] = useImmer<boolean>(false);
 
   useEffect(() => {
-    const getConfig = async () => {
+    (async function () {
       setLoading(true);
       const { msg } = await getLiveTel(sid);
       form.setFieldsValue(msg);
       setLoading(false);
-    };
-    (async function () {
-      await getConfig();
     })();
   }, [form, setLoading, sid]);
 

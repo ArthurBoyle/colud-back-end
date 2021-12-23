@@ -33,16 +33,13 @@ const Chat: React.FC<IProps> = (props) => {
   }, [dispatch, sid]);
 
   useEffect(() => {
-    const getForbiddenWord = () => {
-      dispatch({
-        type: 'chat/getForbiddenWord',
-        payload: sid,
-        callback: (data) => {
-          form.setFieldsValue(data);
-        }
-      });
-    };
-    getForbiddenWord();
+    dispatch({
+      type: 'chat/getForbiddenWord',
+      payload: sid,
+      callback: (data) => {
+        form.setFieldsValue(data);
+      }
+    });
     getPageData();
   }, [dispatch, form, getPageData, sid]);
 

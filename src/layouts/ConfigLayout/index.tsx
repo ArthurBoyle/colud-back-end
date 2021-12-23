@@ -44,7 +44,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
             >
               播放地址设置
             </Menu.Item>
-            <Menu.Item key="2">option2</Menu.Item>
+            <Menu.Item
+              key="/watch-theme"
+              onClick={() => {
+                history.push('/watch-theme');
+              }}
+            >
+              观看主题页设置
+            </Menu.Item>
             <Menu.Item key="3">option3</Menu.Item>
             <Menu.Item key="4">option4</Menu.Item>
           </Menu.SubMenu>

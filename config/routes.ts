@@ -36,6 +36,11 @@ const Routes = [
             title: '播放地址设置',
             path: '/play-address',
             component: '@/pages/liveConfig/basicSettings/PlayAddress'
+          },
+          {
+            title: '观看主题页设置',
+            path: '/watch-theme',
+            component: '@/pages/liveConfig/basicSettings/WatchTheme'
           }
         ]
       }
