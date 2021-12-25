@@ -32,6 +32,7 @@ const WatchTheme: React.FC<IProps> = (props) => {
       const data = await get_theme(sid);
       setPageLoading(false);
       form.setFieldsValue(data);
+      setColor(data.bg_color);
       const { bg_color } = data;
       if (bg_color === '#000000') {
         form.setFieldsValue({ radio: 1 });
@@ -43,7 +44,7 @@ const WatchTheme: React.FC<IProps> = (props) => {
         form.setFieldsValue({ radio: 4 });
       }
     })();
-  }, [form, setPageLoading, sid]);
+  }, [form, setColor, setPageLoading, sid]);
 
   const handleSave = async () => {
     setSaveLoading(true);

@@ -73,7 +73,7 @@ const Chat: React.FC<IProps> = (props) => {
               });
             }}
           >
-            <Icon fontName="iconshanchu1" title="删除" />
+            <Icon fontName="icon-shanchu1" title="删除" />
           </Popconfirm>
         );
       }
