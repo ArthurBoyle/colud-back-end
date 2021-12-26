@@ -93,6 +93,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
               公众号设置
             </Menu.Item>
           </Menu.SubMenu>
+          <Menu.Item
+            key="/tabs-config"
+            onClick={() => {
+              history.push('/tabs-config');
+            }}
+          >
+            选项卡设置
+          </Menu.Item>
           <Menu.SubMenu key="sub2" title="subnav 2">
             <Menu.Item key="5">option5</Menu.Item>
             <Menu.Item key="6">option6</Menu.Item>

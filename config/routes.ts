@@ -66,6 +66,11 @@ const Routes = [
             title: '公众号设置',
             path: '/official-account',
             component: '@/pages/liveConfig/basicSettings/OfficialAccount'
+          },
+          {
+            title: '选项卡设置',
+            path: '/tabs-config',
+            component: '@/pages/liveConfig/TabsConfig'
           }
         ]
       }
