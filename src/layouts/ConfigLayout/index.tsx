@@ -68,6 +68,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
             >
               视频窗口Logo设置
             </Menu.Item>
+            <Menu.Item
+              key="/live-guide"
+              onClick={() => {
+                history.push('/live-guide');
+              }}
+            >
+              直播引导图
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key="sub2" title="subnav 2">
             <Menu.Item key="5">option5</Menu.Item>

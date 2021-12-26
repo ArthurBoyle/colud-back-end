@@ -51,6 +51,11 @@ const Routes = [
             title: '视频窗口Logo设置',
             path: '/window-logo',
             component: '@/pages/liveConfig/basicSettings/WindowLogo'
+          },
+          {
+            title: '直播引导图',
+            path: '/live-guide',
+            component: '@/pages/liveConfig/basicSettings/LiveGuide'
           }
         ]
       }
