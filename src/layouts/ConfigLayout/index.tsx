@@ -84,6 +84,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
             >
               直播窗口背景
             </Menu.Item>
+            <Menu.Item
+              key="/official-account"
+              onClick={() => {
+                history.push('/official-account');
+              }}
+            >
+              公众号设置
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key="sub2" title="subnav 2">
             <Menu.Item key="5">option5</Menu.Item>

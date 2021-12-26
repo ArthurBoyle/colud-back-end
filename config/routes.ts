@@ -61,6 +61,11 @@ const Routes = [
             title: '直播窗口背景',
             path: '/live-background',
             component: '@/pages/liveConfig/basicSettings/LiveBackground'
+          },
+          {
+            title: '公众号设置',
+            path: '/official-account',
+            component: '@/pages/liveConfig/basicSettings/OfficialAccount'
           }
         ]
       }
