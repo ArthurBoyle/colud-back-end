@@ -52,7 +52,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
             >
               观看主题页设置
             </Menu.Item>
-            <Menu.Item key="3">option3</Menu.Item>
+            <Menu.Item
+              key="/visitors-number"
+              onClick={() => {
+                history.push('/visitors-number');
+              }}
+            >
+              观看人数设置
+            </Menu.Item>
             <Menu.Item key="4">option4</Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key="sub2" title="subnav 2">

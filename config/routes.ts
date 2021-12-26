@@ -41,6 +41,11 @@ const Routes = [
             title: '观看主题页设置',
             path: '/watch-theme',
             component: '@/pages/liveConfig/basicSettings/WatchTheme'
+          },
+          {
+            title: '观看人数设置',
+            path: '/visitors-number',
+            component: '@/pages/liveConfig/basicSettings/VisitorsNumber'
           }
         ]
       }
