@@ -1,7 +1,7 @@
 import React from 'react';
 import { request } from 'umi';
 import { useImmer } from 'use-immer';
-import { Upload, Modal, message } from 'antd';
+import { Button, Upload, Modal, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import Icon from '@/components/Icon';
 import style from './index.less';
@@ -17,10 +17,7 @@ const PictureUpload: React.FC<IProps> = (props) => {
   const { value, onChange, width, height } = props;
 
   const [loading, setLoading] = useImmer<boolean>(false);
-  const [modalState, setModalState] = useImmer<{ visible: boolean; name: string }>({
-    visible: false,
-    name: ''
-  });
+  const [visible, setVisible] = useImmer<boolean>(false);
 
   const beforeUpload = async (file: any) => {
     const { type, size } = file;
@@ -46,9 +43,6 @@ const PictureUpload: React.FC<IProps> = (props) => {
         data: { pic: e.target?.result }
       }).then((data) => {
         setLoading(false);
-        setModalState((draft) => {
-          draft.name = file.name;
-        });
         onChange?.(data.url);
       });
     };
@@ -76,9 +70,7 @@ const PictureUpload: React.FC<IProps> = (props) => {
                 fontName="icon-chakan1"
                 style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: 20, marginRight: 20 }}
                 onClick={() => {
-                  setModalState((draft) => {
-                    draft.visible = true;
-                  });
+                  setVisible(true);
                 }}
               />
               <Icon
@@ -101,18 +93,21 @@ const PictureUpload: React.FC<IProps> = (props) => {
         )}
       </Upload>
       <Modal
-        visible={modalState.visible}
-        title={modalState.name}
+        visible={visible}
         width={650}
+        closable={false}
         maskClosable={false}
-        footer={false}
-        onCancel={() => {
-          setModalState((draft) => {
-            draft.visible = false;
-          });
-        }}
+        footer={
+          <Button
+            onClick={() => {
+              setVisible(false);
+            }}
+          >
+            关闭
+          </Button>
+        }
       >
-        <img src={value} alt={modalState.name} width={602} />
+        <img src={value} alt="" width={602} />
       </Modal>
     </>
   );

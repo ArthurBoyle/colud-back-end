@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Button, Form, Input, message, Spin } from 'antd';
+import { Form, Input, message, Spin } from 'antd';
 import Background from '@/components/Background';
+import ConfirmButton from '@/components/ConfirmButton';
 import { State } from '@/models/userInfo';
 import { getLiveTel, updateLiveTel } from './service';
 
@@ -69,9 +70,7 @@ const PlayAddress: React.FC<IProps> = (props) => {
           </Item>
         </Form>
       </Spin>
-      <Button type="primary" onClick={handleUpdate} loading={updateLoading}>
-        确认
-      </Button>
+      <ConfirmButton onClick={handleUpdate} loading={updateLoading} />
     </Background>
   );
 };
