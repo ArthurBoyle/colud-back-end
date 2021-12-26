@@ -46,6 +46,11 @@ const Routes = [
             title: '观看人数设置',
             path: '/visitors-number',
             component: '@/pages/liveConfig/basicSettings/VisitorsNumber'
+          },
+          {
+            title: '视频窗口Logo设置',
+            path: '/window-logo',
+            component: '@/pages/liveConfig/basicSettings/WindowLogo'
           }
         ]
       }

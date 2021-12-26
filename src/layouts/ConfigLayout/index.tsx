@@ -60,7 +60,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
             >
               观看人数设置
             </Menu.Item>
-            <Menu.Item key="4">option4</Menu.Item>
+            <Menu.Item
+              key="/window-logo"
+              onClick={() => {
+                history.push('/window-logo');
+              }}
+            >
+              视频窗口Logo设置
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key="sub2" title="subnav 2">
             <Menu.Item key="5">option5</Menu.Item>
