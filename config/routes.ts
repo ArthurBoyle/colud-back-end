@@ -76,6 +76,11 @@ const Routes = [
             title: '观看权限设置',
             path: '/watching-auth',
             component: '@/pages/liveConfig/WatchingAuth'
+          },
+          {
+            title: '互动打赏设置',
+            path: 'interactive-reward',
+            component: '@/pages/liveConfig/InteractiveReward'
           }
         ]
       }

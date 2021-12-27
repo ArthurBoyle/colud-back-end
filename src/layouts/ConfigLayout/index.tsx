@@ -121,6 +121,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
             <Menu.Item key="11">option11</Menu.Item>
             <Menu.Item key="12">option12</Menu.Item>
           </Menu.SubMenu>
+          <Menu.Item
+            key="/interactive-reward"
+            onClick={() => {
+              history.push('/interactive-reward');
+            }}
+          >
+            互动打赏设置
+          </Menu.Item>
           <Menu.SubMenu key="sub4" title="subnav 4">
             <Menu.Item key="13">option13</Menu.Item>
             <Menu.Item key="14">option14</Menu.Item>
