@@ -101,6 +101,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
           >
             选项卡设置
           </Menu.Item>
+          <Menu.Item
+            key="/watching-auth"
+            onClick={() => {
+              history.push('/watching-auth');
+            }}
+          >
+            观看权限设置
+          </Menu.Item>
           <Menu.SubMenu key="sub2" title="subnav 2">
             <Menu.Item key="5">option5</Menu.Item>
             <Menu.Item key="6">option6</Menu.Item>

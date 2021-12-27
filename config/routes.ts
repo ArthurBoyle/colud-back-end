@@ -71,6 +71,11 @@ const Routes = [
             title: '选项卡设置',
             path: '/tabs-config',
             component: '@/pages/liveConfig/TabsConfig'
+          },
+          {
+            title: '观看权限设置',
+            path: '/watching-auth',
+            component: '@/pages/liveConfig/WatchingAuth'
           }
         ]
       }
