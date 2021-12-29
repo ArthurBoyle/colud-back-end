@@ -9,12 +9,13 @@ import style from './index.less';
 interface IProps {
   value?: any;
   onChange?: (file: string | undefined) => void;
+  disabled?: boolean;
   width?: number;
   height?: number;
 }
 
 const PictureUpload: React.FC<IProps> = (props) => {
-  const { value, onChange, width, height } = props;
+  const { value, onChange, disabled, width, height } = props;
 
   const [loading, setLoading] = useImmer<boolean>(false);
   const [visible, setVisible] = useImmer<boolean>(false);
@@ -53,6 +54,7 @@ const PictureUpload: React.FC<IProps> = (props) => {
       <Upload
         accept=".png,.jpg,.jpeg"
         showUploadList={false}
+        disabled={disabled}
         beforeUpload={beforeUpload}
         customRequest={customRequest}
       >

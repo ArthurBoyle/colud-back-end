@@ -81,6 +81,11 @@ const Routes = [
             title: '互动打赏设置',
             path: 'interactive-reward',
             component: '@/pages/liveConfig/InteractiveReward'
+          },
+          {
+            title: '微信分享',
+            path: 'wechat-sharing',
+            component: '@/pages/liveConfig/WechatSharing'
           }
         ]
       }

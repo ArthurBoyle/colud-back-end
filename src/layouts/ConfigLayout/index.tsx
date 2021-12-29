@@ -129,6 +129,14 @@ const ConfigLayout: React.FC<IProps> = (props) => {
           >
             互动打赏设置
           </Menu.Item>
+          <Menu.Item
+            key="/wechat-sharing"
+            onClick={() => {
+              history.push('/wechat-sharing');
+            }}
+          >
+            微信分享设置
+          </Menu.Item>
           <Menu.SubMenu key="sub4" title="subnav 4">
             <Menu.Item key="13">option13</Menu.Item>
             <Menu.Item key="14">option14</Menu.Item>
