@@ -34,7 +34,7 @@ const Header: React.FC<IProps> = (props) => {
   return (
     <div className={`${style.header} ${hasScrollbar() ? style.scrollHeader : ''}`}>
       <span>欢迎您，用户{uid}</span>
-      <span className="iconfont iconiconfonticon2" onClick={handleExit} />
+      <span className="iconfont icon-iconfonticon2" onClick={handleExit} />
     </div>
   );
 };

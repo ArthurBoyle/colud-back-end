@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
         }}
       >
         <div className={style.img}>
-          <i className="iconfont iconlianxi11" ref={ref1} />
+          <i className="iconfont icon-lianxi11" ref={ref1} />
         </div>
         <div className={style.text}>联系我们</div>
       </Popover>
@@ -63,18 +63,18 @@ const Footer: React.FC = () => {
         getPopupContainer={(triggerNode) => triggerNode}
         onVisibleChange={(visible) => {
           if (visible) {
-            ref2.current.className = 'iconfont iconweixin21';
+            ref2.current.className = 'iconfont icon-weixin21';
             ref2.current.style.border = '1px solid rgba(255, 255, 255, 0)';
             ref2.current.style.backgroundColor = '#04d86a';
           } else {
-            ref2.current.className = 'iconfont iconweixin1';
+            ref2.current.className = 'iconfont icon-weixin1';
             ref2.current.style.border = '1px solid rgba(255, 255, 255, 0.5)';
             ref2.current.style.backgroundColor = 'rgba(0,0,0,0)';
           }
         }}
       >
         <div className={style.img}>
-          <i className="iconfont iconweixin1" ref={ref2} />
+          <i className="iconfont icon-weixin1" ref={ref2} />
         </div>
         <div className={style.text}>
           <div>微信</div>
