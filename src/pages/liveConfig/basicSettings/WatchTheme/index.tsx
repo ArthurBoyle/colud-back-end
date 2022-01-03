@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Spin, Form, message, Radio, Space } from 'antd';
+import { Spin, Form, message, Radio } from 'antd';
 import Background from '@/components/Background';
 import ConfirmButton from '@/components/ConfirmButton';
 import PictureUpload from '@/components/PictureUpload';
@@ -63,55 +63,53 @@ const WatchTheme: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">观看主题设置</div>
       <Spin spinning={pageLoading}>
-        <Form form={form}>
-          <Space size={50} align="start">
-            <Item label="频道主题" name="radio">
-              <Radio.Group>
-                <Radio
-                  value={1}
-                  onClick={() => {
-                    setColor('#000000');
-                  }}
-                >
-                  默认
-                </Radio>
-                <Radio
-                  value={2}
-                  onClick={() => {
-                    setColor('#1890FF');
-                  }}
-                >
-                  科技
-                </Radio>
-                <Radio
-                  value={3}
-                  onClick={() => {
-                    setColor('#FA0000');
-                  }}
-                >
-                  节日
-                </Radio>
-                <Radio value={4} disabled>
-                  自定义
-                </Radio>
-              </Radio.Group>
-            </Item>
-            <Item label="分享图标" name="channel_url">
-              <PictureUpload width={128} height={128} />
-            </Item>
-            <Item label="观看颜色背景色">
-              <input
-                type="color"
-                value={color}
-                onChange={(e) => {
-                  if (form.getFieldValue('radio') !== 4) {
-                    form.setFieldsValue({ radio: 4 });
-                  }
-                  setColor(e.target.value);
+        <Form form={form} labelCol={{ flex: '120px' }}>
+          <Item label="频道主题" name="radio">
+            <Radio.Group>
+              <Radio
+                value={1}
+                onClick={() => {
+                  setColor('#000000');
                 }}
-              />
-            </Item>
-          </Space>
+              >
+                默认
+              </Radio>
+              <Radio
+                value={2}
+                onClick={() => {
+                  setColor('#1890FF');
+                }}
+              >
+                科技
+              </Radio>
+              <Radio
+                value={3}
+                onClick={() => {
+                  setColor('#FA0000');
+                }}
+              >
+                节日
+              </Radio>
+              <Radio value={4} disabled>
+                自定义
+              </Radio>
+            </Radio.Group>
+          </Item>
+          <Item label="观看颜色背景色">
+            <input
+              type="color"
+              value={color}
+              onChange={(e) => {
+                if (form.getFieldValue('radio') !== 4) {
+                  form.setFieldsValue({ radio: 4 });
+                }
+                setColor(e.target.value);
+              }}
+            />
+          </Item>
+          <Item label="分享图标" name="channel_url">
+            <PictureUpload width={128} height={128} />
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />

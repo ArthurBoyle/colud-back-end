@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Spin, Form, Space, Radio, message } from 'antd';
+import { Spin, Form, Radio, message } from 'antd';
 import Background from '@/components/Background';
 import ConfirmButton from '@/components/ConfirmButton';
 import PictureUpload from '@/components/PictureUpload';
@@ -50,18 +50,16 @@ const WindowLogo: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">视频窗口Logo设置</div>
       <Spin spinning={pageLoading}>
-        <Form form={form}>
-          <Space size={50} align="start">
-            <Item label="显示开关" name="logo_off">
-              <Radio.Group>
-                <Radio value={0}>开</Radio>
-                <Radio value={1}>关</Radio>
-              </Radio.Group>
-            </Item>
-            <Item label="Logo" name="logo">
-              <PictureUpload width={128} height={128} />
-            </Item>
-          </Space>
+        <Form form={form} labelCol={{ flex: '80px' }}>
+          <Item label="显示开关" name="logo_off">
+            <Radio.Group>
+              <Radio value={0}>开</Radio>
+              <Radio value={1}>关</Radio>
+            </Radio.Group>
+          </Item>
+          <Item label="Logo" name="logo">
+            <PictureUpload width={128} height={128} />
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />

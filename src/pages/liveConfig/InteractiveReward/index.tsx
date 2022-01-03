@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Form, Input, message, Spin, Space, Radio } from 'antd';
+import { Form, Input, message, Spin, Radio } from 'antd';
 import ConfirmButton from '@/components/ConfirmButton';
 import Background from '@/components/Background';
 import { State } from '@/models/userInfo';
@@ -50,18 +50,16 @@ const InteractiveReward: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">互动打赏设置</div>
       <Spin spinning={pageLoading}>
-        <Form form={form} autoComplete="off" requiredMark={false}>
-          <Space size={50} align="start">
-            <Item label="打赏开关" name="reward_off">
-              <Radio.Group>
-                <Radio value={0}>开</Radio>
-                <Radio value={1}>关</Radio>
-              </Radio.Group>
-            </Item>
-            <Item label="打赏宣传语" name="reward_msg">
-              <Input placeholder="请输入打赏宣传语" allowClear />
-            </Item>
-          </Space>
+        <Form form={form} labelCol={{ flex: '90px' }} className="form" autoComplete="off">
+          <Item label="打赏开关" name="reward_off">
+            <Radio.Group>
+              <Radio value={0}>开</Radio>
+              <Radio value={1}>关</Radio>
+            </Radio.Group>
+          </Item>
+          <Item label="打赏宣传语" name="reward_msg">
+            <Input placeholder="请输入打赏宣传语" allowClear />
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />

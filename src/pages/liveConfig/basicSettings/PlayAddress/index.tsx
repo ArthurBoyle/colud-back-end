@@ -6,6 +6,7 @@ import Background from '@/components/Background';
 import ConfirmButton from '@/components/ConfirmButton';
 import { State } from '@/models/userInfo';
 import { getLiveTel, updateLiveTel } from './service';
+import style from './index.less';
 
 const { Item } = Form;
 
@@ -55,7 +56,7 @@ const PlayAddress: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">播放地址设置</div>
       <Spin spinning={loading}>
-        <Form form={form} labelCol={{ span: 3 }} wrapperCol={{ span: 19 }} autoComplete="off">
+        <Form autoComplete="off" className={style.form} form={form} labelCol={{ flex: '120px' }}>
           <Item label="频道名称" name="channel_name" rules={[{ required: true }]}>
             <Input placeholder="请输入频道名称" allowClear />
           </Item>

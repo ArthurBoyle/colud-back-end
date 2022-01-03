@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Form, Input, message, Spin, Space } from 'antd';
+import { Form, Input, message, Spin } from 'antd';
 import ConfirmButton from '@/components/ConfirmButton';
 import Background from '@/components/Background';
 import { State } from '@/models/userInfo';
@@ -49,18 +49,16 @@ const TabsConfig: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">选项卡设置</div>
       <Spin spinning={pageLoading}>
-        <Form form={form} autoComplete="off" requiredMark={false}>
-          <Space size={50} align="start">
-            <Item label="tab1" name="title1" rules={[{ required: true }]}>
-              <Input placeholder="请输入选项卡名称" allowClear />
-            </Item>
-            <Item label="tab2" name="title2" rules={[{ required: true }]}>
-              <Input placeholder="请输入选项卡名称" allowClear />
-            </Item>
-            <Item label="tab3" name="title3" rules={[{ required: true }]}>
-              <Input placeholder="请输入选项卡名称" allowClear />
-            </Item>
-          </Space>
+        <Form form={form} className="form" autoComplete="off">
+          <Item label="选项卡1" name="title1" rules={[{ required: true }]}>
+            <Input placeholder="请输入选项卡名称" allowClear />
+          </Item>
+          <Item label="选项卡2" name="title2" rules={[{ required: true }]}>
+            <Input placeholder="请输入选项卡名称" allowClear />
+          </Item>
+          <Item label="选项卡3" name="title3" rules={[{ required: true }]}>
+            <Input placeholder="请输入选项卡名称" allowClear />
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />

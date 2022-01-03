@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Spin, Form, Space, Radio, message } from 'antd';
+import { Spin, Form, Radio, message } from 'antd';
 import Background from '@/components/Background';
 import ConfirmButton from '@/components/ConfirmButton';
 import PictureUpload from '@/components/PictureUpload';
@@ -50,22 +50,20 @@ const LiveGuide: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">直播引导图</div>
       <Spin spinning={pageLoading}>
-        <Form form={form}>
-          <Space size={50} align="start">
-            <Item
-              label="显示开关"
-              name="bdt_off"
-              extra="此图片在进入直播页面之前，用于展示直播相关内容"
-            >
-              <Radio.Group>
-                <Radio value={0}>开</Radio>
-                <Radio value={1}>关</Radio>
-              </Radio.Group>
-            </Item>
-            <Item label="直播引导图" name="bdt">
-              <PictureUpload width={270} height={480} />
-            </Item>
-          </Space>
+        <Form form={form} labelCol={{ flex: '90px' }}>
+          <Item
+            label="显示开关"
+            name="bdt_off"
+            extra="此图片在进入直播页面之前，用于展示直播相关内容"
+          >
+            <Radio.Group>
+              <Radio value={0}>开</Radio>
+              <Radio value={1}>关</Radio>
+            </Radio.Group>
+          </Item>
+          <Item label="直播引导图" name="bdt">
+            <PictureUpload width={270} height={480} />
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />

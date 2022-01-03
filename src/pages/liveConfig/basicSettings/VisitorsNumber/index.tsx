@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Spin, Form, Space, Radio, InputNumber, message } from 'antd';
+import { Spin, Form, Radio, InputNumber, message } from 'antd';
 import Background from '@/components/Background';
 import ConfirmButton from '@/components/ConfirmButton';
 import { State } from '@/models/userInfo';
@@ -50,22 +50,20 @@ const VisitorsNumber: React.FC<IProps> = (props) => {
       <div className="page_title">观看人数设置</div>
       <Spin spinning={pageLoading}>
         <Form form={form}>
-          <Space size={50} align="start">
-            <Item label="显示开关" name="off">
-              <Radio.Group>
-                <Radio value={0}>开</Radio>
-                <Radio value={1}>关</Radio>
-              </Radio.Group>
+          <Item label="显示开关" name="off">
+            <Radio.Group>
+              <Radio value={0}>开</Radio>
+              <Radio value={1}>关</Radio>
+            </Radio.Group>
+          </Item>
+          <Item label="增加形式" extra="显示观众人数=基础人数+显示人数*倍数">
+            <Item label="基础人数" name="is_default">
+              <InputNumber addonAfter="人" />
             </Item>
-            <Item label="增加形式" extra="显示观众人数=基础人数+显示人数*倍数">
-              <Item label="基础人数" name="is_default">
-                <InputNumber addonAfter="人" />
-              </Item>
-              <Item label="显示人数" name="is_renshu">
-                <InputNumber addonAfter="倍" />
-              </Item>
+            <Item label="显示人数" name="is_renshu">
+              <InputNumber addonAfter="倍" />
             </Item>
-          </Space>
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />

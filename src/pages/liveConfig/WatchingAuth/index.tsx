@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Form, Input, message, Spin, Space, Radio } from 'antd';
+import { Form, Input, message, Spin, Radio } from 'antd';
 import ConfirmButton from '@/components/ConfirmButton';
 import Background from '@/components/Background';
 import { State } from '@/models/userInfo';
@@ -49,21 +49,19 @@ const WatchingAuth: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">观看权限设置</div>
       <Spin spinning={pageLoading}>
-        <Form form={form} autoComplete="off" requiredMark={false}>
-          <Space size={50} align="start">
-            <Item label="权限开关" name="code_off">
-              <Radio.Group>
-                <Radio value={1}>开</Radio>
-                <Radio value={0}>关</Radio>
-              </Radio.Group>
-            </Item>
-            <Item label="提示文字" name="prompt">
-              <Input placeholder="请输入提示文字" allowClear />
-            </Item>
-            <Item label="验证码" name="code">
-              <Input placeholder="请输入验证码" allowClear />
-            </Item>
-          </Space>
+        <Form form={form} labelCol={{ flex: '80px' }} className="form" autoComplete="off">
+          <Item label="权限开关" name="code_off">
+            <Radio.Group>
+              <Radio value={1}>开</Radio>
+              <Radio value={0}>关</Radio>
+            </Radio.Group>
+          </Item>
+          <Item label="提示文字" name="prompt">
+            <Input placeholder="请输入提示文字" allowClear />
+          </Item>
+          <Item label="验证码" name="code">
+            <Input placeholder="请输入验证码" allowClear />
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />

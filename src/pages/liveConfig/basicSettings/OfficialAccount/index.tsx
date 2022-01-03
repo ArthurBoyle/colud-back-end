@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Spin, Form, message, Space, Radio, Input } from 'antd';
+import { Spin, Form, message, Radio, Input } from 'antd';
 import Background from '@/components/Background';
 import ConfirmButton from '@/components/ConfirmButton';
 import PictureUpload from '@/components/PictureUpload';
@@ -52,21 +52,19 @@ const OfficialAccount: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">公众号设置</div>
       <Spin spinning={pageLoading}>
-        <Form form={form}>
-          <Space size={50} align="start">
-            <Item label="功能设置" name="gzh_off">
-              <Radio.Group>
-                <Radio value={0}>开</Radio>
-                <Radio value={1}>关</Radio>
-              </Radio.Group>
-            </Item>
-            <Item label="公众号名称" name="gzh_name">
-              <Input />
-            </Item>
-            <Item label="二维码" name="erweima">
-              <PictureUpload width={128} height={128} />
-            </Item>
-          </Space>
+        <Form form={form} className="form" labelCol={{ flex: '90px' }}>
+          <Item label="功能设置" name="gzh_off">
+            <Radio.Group>
+              <Radio value={0}>开</Radio>
+              <Radio value={1}>关</Radio>
+            </Radio.Group>
+          </Item>
+          <Item label="公众号名称" name="gzh_name">
+            <Input placeholder="请输入公众号名称" allowClear />
+          </Item>
+          <Item label="二维码" name="erweima">
+            <PictureUpload width={128} height={128} />
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />

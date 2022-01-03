@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'umi';
 import { useImmer } from 'use-immer';
-import { Form, Input, message, Space, Spin, Radio } from 'antd';
+import { Form, Input, message, Spin, Radio } from 'antd';
 import Background from '@/components/Background';
 import ConfirmButton from '@/components/ConfirmButton';
+import PictureUpload from '@/components/PictureUpload';
 import { State } from '@/models/userInfo';
 import { getPageData, getTheme, save } from './service';
-import PictureUpload from '@/components/PictureUpload';
+import style from './index.less';
 
 const { Item } = Form;
 
@@ -51,29 +52,31 @@ const WechatSharing: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">选项卡设置</div>
       <Spin spinning={pageLoading}>
-        <Form form={form} autoComplete="off" layout="vertical">
-          <Space size={50} align="start">
-            <Item label="是否开启分享" name="wx_off">
-              <Radio.Group>
-                <Radio value={0}>开</Radio>
-                <Radio value={1}>关</Radio>
-              </Radio.Group>
+        <Form form={form} autoComplete="off" className={style.form}>
+          <Item label="是否开启分享" name="wx_off">
+            <Radio.Group>
+              <Radio value={0}>开</Radio>
+              <Radio value={1}>关</Radio>
+            </Radio.Group>
+          </Item>
+          <Item label="分享图标" name="channel_url">
+            <PictureUpload disabled width={128} height={128} />
+          </Item>
+          <Item>
+            <div className={style.title}>设置【发送给朋友】</div>
+            <Item label="标题" name="wx_title">
+              <Input placeholder="请输入标题" allowClear />
             </Item>
-            <Item label="分享图标" name="channel_url">
-              <PictureUpload disabled width={128} height={128} />
-            </Item>
-            <Item label="发送给朋友">
-              <Item label="标题" name="wx_title">
-                <Input placeholder="请输入标题" allowClear />
-              </Item>
-              <Item label="内容" name="wx_friend">
-                <Input.TextArea placeholder="请输入内容" allowClear rows={4} />
-              </Item>
-            </Item>
-            <Item label="发送到朋友圈" name="wx_circle">
+            <Item label="摘要" name="wx_friend">
               <Input.TextArea placeholder="请输入内容" allowClear rows={4} />
             </Item>
-          </Space>
+          </Item>
+          <Item>
+            <div className={style.title}>设置【发送到朋友圈】</div>
+            <Item label="摘要" name="wx_circle">
+              <Input.TextArea placeholder="请输入内容" allowClear rows={4} />
+            </Item>
+          </Item>
         </Form>
       </Spin>
       <ConfirmButton onClick={handleSave} loading={saveLoading} />
