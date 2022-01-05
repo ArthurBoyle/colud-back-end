@@ -78,6 +78,11 @@ const Routes = [
             component: '@/pages/liveConfig/WatchingAuth'
           },
           {
+            title: '互动投票设置',
+            path: 'interactive-voting',
+            component: '@/pages/liveConfig/InteractiveVoting'
+          },
+          {
             title: '互动打赏设置',
             path: 'interactive-reward',
             component: '@/pages/liveConfig/InteractiveReward'
