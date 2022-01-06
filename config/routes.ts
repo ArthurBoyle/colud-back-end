@@ -78,6 +78,16 @@ const Routes = [
             component: '@/pages/liveConfig/WatchingAuth'
           },
           {
+            title: '抽奖设置',
+            path: '/luck-draw-config',
+            component: '@/pages/liveConfig/LuckDraw/Config'
+          },
+          {
+            title: '中奖记录',
+            path: '/luck-draw-record',
+            component: '@/pages/liveConfig/LuckDraw/Record'
+          },
+          {
             title: '互动投票设置',
             path: 'interactive-voting',
             component: '@/pages/liveConfig/InteractiveVoting'

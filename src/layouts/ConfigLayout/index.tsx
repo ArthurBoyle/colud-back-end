@@ -109,11 +109,23 @@ const ConfigLayout: React.FC<IProps> = (props) => {
           >
             观看权限设置
           </Menu.Item>
-          <Menu.SubMenu key="sub2" title="subnav 2">
-            <Menu.Item key="5">option5</Menu.Item>
-            <Menu.Item key="6">option6</Menu.Item>
-            <Menu.Item key="7">option7</Menu.Item>
-            <Menu.Item key="8">option8</Menu.Item>
+          <Menu.SubMenu key="luckDraw" title="幸运抽奖">
+            <Menu.Item
+              key="/luck-draw-config"
+              onClick={() => {
+                history.push('/luck-draw-config');
+              }}
+            >
+              抽奖设置
+            </Menu.Item>
+            <Menu.Item
+              key="/luck-draw-record"
+              onClick={() => {
+                history.push('/luck-draw-record');
+              }}
+            >
+              中奖记录
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.Item
             key="/interactive-voting"
