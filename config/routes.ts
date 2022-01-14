@@ -68,6 +68,16 @@ const Routes = [
             component: '@/pages/liveConfig/basicSettings/OfficialAccount'
           },
           {
+            title: '活动详情',
+            path: '/live-detail',
+            component: '@/pages/liveConfig/basicSettings/LiveDetail'
+          },
+          {
+            title: '活动回放',
+            path: '/live-playback',
+            component: '@/pages/liveConfig/basicSettings/LivePlayback'
+          },
+          {
             title: '选项卡设置',
             path: '/tabs-config',
             component: '@/pages/liveConfig/TabsConfig'

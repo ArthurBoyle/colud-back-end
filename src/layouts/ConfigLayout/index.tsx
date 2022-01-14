@@ -92,6 +92,22 @@ const ConfigLayout: React.FC<IProps> = (props) => {
             >
               公众号设置
             </Menu.Item>
+            <Menu.Item
+              key="/live-detail"
+              onClick={() => {
+                history.push('/live-detail');
+              }}
+            >
+              活动详情
+            </Menu.Item>
+            <Menu.Item
+              key="/live-playback"
+              onClick={() => {
+                history.push('/live-playback');
+              }}
+            >
+              活动回放
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.Item
             key="/tabs-config"
@@ -151,12 +167,6 @@ const ConfigLayout: React.FC<IProps> = (props) => {
           >
             微信分享设置
           </Menu.Item>
-          <Menu.SubMenu key="sub4" title="subnav 4">
-            <Menu.Item key="13">option13</Menu.Item>
-            <Menu.Item key="14">option14</Menu.Item>
-            <Menu.Item key="15">option15</Menu.Item>
-            <Menu.Item key="16">option16</Menu.Item>
-          </Menu.SubMenu>
         </Menu>
       </Layout.Sider>
       <Layout className={style.contentLayout}>
