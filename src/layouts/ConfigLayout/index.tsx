@@ -24,7 +24,7 @@ const ConfigLayout: React.FC<IProps> = (props) => {
 
   return (
     <Layout>
-      <Header uid={uid} pageLoading={false} />
+      <Header uid={uid} />
       <Layout.Sider className={style.sider}>
         <Menu className={style.menu} mode="inline" selectedKeys={[pathname]}>
           <Menu.Item

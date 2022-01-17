@@ -1,6 +1,7 @@
 .sider {
   position: fixed;
   top: 48px;
+  z-index: 2;
   height: 100%;
   box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
   .menu {
@@ -10,10 +11,13 @@
 }
 
 .contentLayout {
+  width: 100% !important;
   margin-top: 48px;
   margin-left: 200px;
   .content {
+    min-width: 720px;
     min-height: calc(100vh - 148px);
     padding: 24px;
+    overflow: auto;
   }
 }
