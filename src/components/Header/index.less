@@ -9,14 +9,20 @@
   text-align: right;
   background: #fff;
   box-shadow: 0 2px 8px #f0f1f2;
-  span {
+  > span {
+    margin-right: 14px;
     font-size: 14px;
-    cursor: pointer;
-    &:nth-child(1) {
-      margin-right: 14px;
+    cursor: default;
+    &:first-child {
+      button {
+        height: 28px;
+        margin-right: 20px;
+        padding: 2px 15px;
+      }
     }
-    &:nth-child(2) {
+    &:last-child {
       color: rgba(0, 0, 0, 0.65);
+      cursor: pointer;
     }
   }
 }
