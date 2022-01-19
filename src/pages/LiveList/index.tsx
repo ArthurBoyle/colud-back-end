@@ -96,7 +96,7 @@ const LiveList: React.FC<IProps> = (props) => {
 
   return (
     <Layout>
-      <Header uid={uid} />
+      <Header uid={uid} isListPage />
       <Content className={style.content}>
         <Spin spinning={pageLoading}>
           <Form form={form}>

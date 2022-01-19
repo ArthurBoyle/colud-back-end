@@ -100,7 +100,7 @@ const Chat: React.FC<IProps> = (props) => {
   ];
 
   return (
-    <Background fillScreen>
+    <Background>
       <div className="page_title">聊天室管理</div>
       <Form form={form}>
         <Form.Item label="禁言选项" name="jinyan">

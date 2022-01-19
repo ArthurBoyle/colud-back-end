@@ -3,7 +3,6 @@ import { request } from 'umi';
 import { useImmer } from 'use-immer';
 import { Button, Upload, Modal, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import Icon from '@/components/Icon';
 import style from './index.less';
 
 interface IProps {
@@ -67,18 +66,16 @@ const PictureUpload: React.FC<IProps> = (props) => {
           >
             <img src={value} alt="" width={width} height={height} />
             <span className={style.buttonList}>
-              <Icon
+              <span
                 title="查看"
-                fontName="icon-chakan1"
-                style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: 20, marginRight: 20 }}
+                className="iconfont icon-chakan1"
                 onClick={() => {
                   setVisible(true);
                 }}
               />
-              <Icon
+              <span
                 title="删除"
-                fontName="icon-shanchu1"
-                style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: 20 }}
+                className="iconfont icon-shanchu1"
                 onClick={() => {
                   onChange?.(undefined);
                 }}

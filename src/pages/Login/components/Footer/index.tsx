@@ -7,8 +7,8 @@ import weChatPng from '@/assets/images/weChat.png';
 import style from './index.less';
 
 const Footer: React.FC = () => {
-  const ref1: any = useRef();
-  const ref2: any = useRef();
+  const ref1 = useRef<any>();
+  const ref2 = useRef<any>();
 
   const contactUs = (
     <div className={style.content}>
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
         }}
       >
         <div className={style.img}>
-          <i className="iconfont icon-lianxi11" ref={ref1} />
+          <span className="iconfont icon-lianxi11" ref={ref1} />
         </div>
         <div className={style.text}>联系我们</div>
       </Popover>
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
         }}
       >
         <div className={style.img}>
-          <i className="iconfont icon-weixin1" ref={ref2} />
+          <span className="iconfont icon-weixin1" ref={ref2} />
         </div>
         <div className={style.text}>
           <div>微信</div>

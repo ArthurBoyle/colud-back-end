@@ -4,21 +4,12 @@ import styles from './index.less';
 interface IProps {
   fontName: string;
   title: string;
-  onClick?: () => void;
-  style?: React.CSSProperties;
 }
 
 const Icon: React.FC<IProps> = (props) => {
-  const { fontName, title, onClick, style } = props;
+  const { fontName, title } = props;
 
-  return (
-    <i
-      className={`${styles.container} iconfont ${fontName}`}
-      style={style}
-      title={title}
-      onClick={onClick}
-    />
-  );
+  return <span className={`${styles.container} iconfont ${fontName}`} title={title} />;
 };
 
 export default Icon;
