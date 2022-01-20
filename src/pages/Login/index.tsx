@@ -23,7 +23,6 @@ const Login: React.FC = () => {
   return (
     <>
       <div className={style.container}>
-        {/*<LoginHeader myRef={myRef} entry="wait" />*/}
         <div className={style.content}>
           <div className={style.title}>视频直播互联网管理系统</div>
           <Button
