@@ -5,6 +5,7 @@ import { Form, Input, InputNumber, message, Spin, Radio, Space } from 'antd';
 import ConfirmButton from '@/components/ConfirmButton';
 import Background from '@/components/Background';
 import DatePicker from '@/components/DatePicker';
+import RuleItem from '@/components/RuleItem';
 import { State } from '@/models/userInfo';
 import { getPageData, save } from './service';
 import styles from './index.less';
@@ -37,8 +38,9 @@ const InteractiveReward: React.FC<IProps> = (props) => {
   }, [form, setPageLoading, sid]);
 
   const handleSave = async () => {
+    const values = await form.validateFields();
     setSaveLoading(true);
-    const { status } = await save({ sid, ...form.getFieldsValue() });
+    const { status } = await save({ sid, ...values });
     setSaveLoading(false);
     if (status === 1) {
       message.success('修改成功');
@@ -69,36 +71,36 @@ const InteractiveReward: React.FC<IProps> = (props) => {
           </Item>
           <Space size="large">
             <Item label="选项一" name="option1">
-              <Input />
+              <Input placeholder="请输入选项一" />
             </Item>
-            <Item label="实际投票数一" name="count1">
-              <InputNumber />
-            </Item>
-            <Item label="虚拟投票数一" name="fictitious1">
-              <InputNumber />
-            </Item>
+            <RuleItem label="实际投票数一" name="count1">
+              <InputNumber placeholder="请输入实际投票数一" />
+            </RuleItem>
+            <RuleItem label="虚拟投票数一" name="fictitious1">
+              <InputNumber placeholder="请输入虚拟投票数一" />
+            </RuleItem>
           </Space>
           <Space size="large">
             <Item label="选项二" name="option2">
-              <Input />
+              <Input placeholder="请输入选项二" />
             </Item>
-            <Item label="实际投票数二" name="count2">
-              <InputNumber />
-            </Item>
-            <Item label="虚拟投票数二" name="fictitious2">
-              <InputNumber />
-            </Item>
+            <RuleItem label="实际投票数二" name="count2">
+              <InputNumber placeholder="请输入实际投票数二" />
+            </RuleItem>
+            <RuleItem label="虚拟投票数二" name="fictitious2">
+              <InputNumber placeholder="请输入虚拟投票数二" />
+            </RuleItem>
           </Space>
           <Space size="large">
             <Item label="选项三" name="option3">
-              <Input />
+              <Input placeholder="请输入选项三" />
             </Item>
-            <Item label="实际投票数三" name="count3">
-              <InputNumber />
-            </Item>
-            <Item label="虚拟投票数三" name="fictitious3">
-              <InputNumber />
-            </Item>
+            <RuleItem label="实际投票数三" name="count3">
+              <InputNumber placeholder="请输入实际投票数二" />
+            </RuleItem>
+            <RuleItem label="虚拟投票数三" name="fictitious3">
+              <InputNumber placeholder="请输入虚拟投票数三" />
+            </RuleItem>
           </Space>
         </Form>
       </Spin>
