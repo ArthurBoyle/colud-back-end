@@ -53,7 +53,6 @@ const PictureUpload: React.FC<IProps> = (props) => {
       <Upload
         accept=".png,.jpg,.jpeg"
         showUploadList={false}
-        // disabled={disabled}
         beforeUpload={beforeUpload}
         customRequest={customRequest}
       >
