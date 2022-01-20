@@ -53,34 +53,36 @@ const PictureUpload: React.FC<IProps> = (props) => {
       <Upload
         accept=".png,.jpg,.jpeg"
         showUploadList={false}
-        disabled={disabled}
+        // disabled={disabled}
         beforeUpload={beforeUpload}
         customRequest={customRequest}
       >
         {value ? (
           <div
-            className={style.valueContainer}
+            className={disabled ? style.disabled : style.valueContainer}
             onClick={(e) => {
               e.stopPropagation();
             }}
           >
             <img src={value} alt="" width={width} height={height} />
-            <span className={style.buttonList}>
-              <span
-                title="查看"
-                className="iconfont icon-chakan1"
-                onClick={() => {
-                  setVisible(true);
-                }}
-              />
-              <span
-                title="删除"
-                className="iconfont icon-shanchu1"
-                onClick={() => {
-                  onChange?.(undefined);
-                }}
-              />
-            </span>
+            {!disabled && (
+              <span className={style.buttonList}>
+                <span
+                  title="查看"
+                  className="iconfont icon-chakan1"
+                  onClick={() => {
+                    setVisible(true);
+                  }}
+                />
+                <span
+                  title="删除"
+                  className="iconfont icon-shanchu1"
+                  onClick={() => {
+                    onChange?.(undefined);
+                  }}
+                />
+              </span>
+            )}
           </div>
         ) : (
           <div className={style.uploadContainer} style={{ width, height }}>
