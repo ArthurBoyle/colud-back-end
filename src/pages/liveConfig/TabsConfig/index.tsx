@@ -35,8 +35,9 @@ const TabsConfig: React.FC<IProps> = (props) => {
   }, [form, setPageLoading, sid]);
 
   const handleSave = async () => {
+    const values = await form.validateFields();
     setSaveLoading(true);
-    const { status } = await save({ sid, ...form.getFieldsValue() });
+    const { status } = await save({ sid, ...values });
     setSaveLoading(false);
     if (status === 1) {
       message.success('修改成功');
@@ -50,13 +51,25 @@ const TabsConfig: React.FC<IProps> = (props) => {
       <div className="page_title">选项卡设置</div>
       <Spin spinning={pageLoading}>
         <Form form={form} className="form" autoComplete="off">
-          <Item label="选项卡1" name="title1" rules={[{ required: true }]}>
+          <Item
+            label="选项卡1"
+            name="title1"
+            rules={[{ required: true, message: '请输入选项卡名称' }]}
+          >
             <Input placeholder="请输入选项卡名称" allowClear />
           </Item>
-          <Item label="选项卡2" name="title2" rules={[{ required: true }]}>
+          <Item
+            label="选项卡2"
+            name="title2"
+            rules={[{ required: true, message: '请输入选项卡名称' }]}
+          >
             <Input placeholder="请输入选项卡名称" allowClear />
           </Item>
-          <Item label="选项卡3" name="title3" rules={[{ required: true }]}>
+          <Item
+            label="选项卡3"
+            name="title3"
+            rules={[{ required: true, message: '请输入选项卡名称' }]}
+          >
             <Input placeholder="请输入选项卡名称" allowClear />
           </Item>
         </Form>

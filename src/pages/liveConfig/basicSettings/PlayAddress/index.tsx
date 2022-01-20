@@ -36,8 +36,8 @@ const PlayAddress: React.FC<IProps> = (props) => {
   }, [form, setLoading, sid]);
 
   const handleUpdate = async () => {
-    setUpdateLoading(true);
     const data = await form.validateFields();
+    setUpdateLoading(true);
     data.val = data.channel_name;
     data.valb = data.url;
     delete data.channel_name;

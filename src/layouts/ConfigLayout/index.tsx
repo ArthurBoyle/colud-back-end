@@ -52,7 +52,7 @@ const ConfigLayout: React.FC<IProps> = (props) => {
                 history.push('/watch-theme');
               }}
             >
-              观看主题页设置
+              观看主题设置
             </Item>
             <Item
               key="/visitors-number"

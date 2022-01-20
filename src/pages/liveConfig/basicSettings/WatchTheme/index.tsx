@@ -48,8 +48,8 @@ const WatchTheme: React.FC<IProps> = (props) => {
   }, [form, setColor, setPageLoading, sid]);
 
   const handleSave = async () => {
+    const { channel_url } = await form.validateFields();
     setSaveLoading(true);
-    const { channel_url } = form.getFieldsValue();
     const { status } = await theme({ sid, channel_url, bg_color: color });
     setSaveLoading(false);
     if (status === 1) {
@@ -107,7 +107,12 @@ const WatchTheme: React.FC<IProps> = (props) => {
               }}
             />
           </Item>
-          <Item label="分享图标" name="channel_url">
+          <Item
+            label="分享图标"
+            name="channel_url"
+            required={false}
+            rules={[{ required: true, message: '请上传分享图标' }]}
+          >
             <PictureUpload width={128} height={128} />
           </Item>
         </Form>

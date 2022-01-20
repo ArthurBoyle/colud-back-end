@@ -35,8 +35,9 @@ const VisitorsNumber: React.FC<IProps> = (props) => {
   }, [form, setPageLoading, sid]);
 
   const handleSave = async () => {
+    const values = await form.validateFields();
     setSaveLoading(true);
-    const { status } = await save({ sid, ...form.getFieldsValue() });
+    const { status } = await save({ sid, ...values });
     setSaveLoading(false);
     if (status === 0) {
       message.success('修改成功');
@@ -49,19 +50,35 @@ const VisitorsNumber: React.FC<IProps> = (props) => {
     <Background>
       <div className="page_title">观看人数设置</div>
       <Spin spinning={pageLoading}>
-        <Form form={form}>
+        <Form form={form} requiredMark={false}>
           <Item label="显示开关" name="off">
             <Radio.Group>
               <Radio value={0}>开</Radio>
               <Radio value={1}>关</Radio>
             </Radio.Group>
           </Item>
-          <Item label="增加形式" extra="显示观众人数=基础人数+显示人数*倍数">
-            <Item label="基础人数" name="is_default">
-              <InputNumber addonAfter="人" />
+          <Item label="增加形式" extra="显示观众人数 = 基础人数 + 显示人数 * 倍数">
+            <Item
+              label="基础人数"
+              name="is_default"
+              rules={[
+                { required: true },
+                { pattern: /^(0|[0-9]*|-[0-9]*)$/, message: '基础人数必须为整数' }
+              ]}
+            >
+              <InputNumber placeholder="请输入基础人数" addonAfter="人" />
             </Item>
-            <Item label="显示人数" name="is_renshu">
-              <InputNumber addonAfter="倍" />
+            <Item
+              label="显示人数"
+              name="is_renshu"
+              validateFirst
+              rules={[
+                { required: true },
+                { type: 'number', min: 1, message: '显示人数不能小于1倍' },
+                { pattern: /^([0-9]*)$/, message: '显示人数必须为整数' }
+              ]}
+            >
+              <InputNumber placeholder="请输入显示人数" addonAfter="倍" />
             </Item>
           </Item>
         </Form>

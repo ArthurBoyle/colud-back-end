@@ -49,7 +49,7 @@ const InteractiveReward: React.FC<IProps> = (props) => {
 
   return (
     <Background>
-      <div className="page_title">互动打赏设置</div>
+      <div className="page_title">互动投票设置</div>
       <Spin spinning={pageLoading}>
         <Form form={form} className={styles.form} autoComplete="off">
           <Item label="互动开关" name="vote_off">
