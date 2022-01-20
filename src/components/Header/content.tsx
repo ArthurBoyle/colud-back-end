@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { Input, Button, Space, Form, message } from 'antd';
+import { Form, Typography, Input } from 'antd';
 import QRCode from 'qrcode';
-import ClipboardJS from 'clipboard';
+import style from './content.less';
 
 const { Item } = Form;
+const { Paragraph } = Typography;
 
 interface IProps {
   sid: string;
@@ -24,27 +25,11 @@ const Content: React.FC<IProps> = (props) => {
   }, [sid]);
 
   return (
-    <Form layout="vertical">
+    <Form className={style.container} layout="vertical">
       <Item label="观看地址">
-        <Space>
-          <Input
-            disabled
-            value={`https://zbqt.hnxsj.vip/index/Index/index?sid=${sid}`}
-            style={{ width: 420 }}
-          />
-          <Button
-            className="button"
-            data-clipboard-text={`https://zbqt.hnxsj.vip/index/Index/index?sid=${sid}`}
-            onClick={async () => {
-              const clipboard = new ClipboardJS('.button');
-              clipboard.on('success', () => {
-                message.success('已复制到剪切板');
-              });
-            }}
-          >
-            复制
-          </Button>
-        </Space>
+        <Paragraph copyable={{ text: `https://zbqt.hnxsj.vip/index/Index/index?sid=${sid}` }}>
+          <Input disabled value={`https://zbqt.hnxsj.vip/index/Index/index?sid=${sid}`} />
+        </Paragraph>
       </Item>
       <Item label="手机观看二维码">
         <canvas ref={qr} />
