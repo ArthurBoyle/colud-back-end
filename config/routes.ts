@@ -23,11 +23,6 @@ const Routes = [
         component: '@/layouts/ConfigLayout',
         routes: [
           {
-            title: '测试',
-            path: '/test',
-            component: '@/pages/liveConfig/Test'
-          },
-          {
             title: '聊天管理',
             path: '/chat',
             component: '@/pages/liveConfig/Chat'
