@@ -1,13 +1,17 @@
 const Routes = [
   {
-    title: '首页',
     path: '/',
-    component: '@/pages/index'
+    redirect: '/login'
   },
   {
     path: '/',
     component: '@/layouts/BaseLayout',
     routes: [
+      {
+        title: '404',
+        path: '/no/found/page',
+        component: '@/pages/404'
+      },
       {
         title: '登录',
         path: '/login',
@@ -109,16 +113,6 @@ const Routes = [
           }
         ]
       }
-      /*{
-        path: '/no/auth',
-        pageName: '无权限',
-        component: '@/pages/NoAuth'
-      },
-      {
-        path: '/no/found/page',
-        pageName: '404',
-        component: '@/pages/404'
-      }*/
     ]
   }
 ];
