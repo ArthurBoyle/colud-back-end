@@ -9,12 +9,13 @@ interface IProps {
   value?: any;
   onChange?: (file: string | undefined) => void;
   disabled?: boolean;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
+  picSize: number;
 }
 
 const PictureUpload: React.FC<IProps> = (props) => {
-  const { value, onChange, disabled, width, height } = props;
+  const { value, onChange, disabled, width, height, picSize } = props;
 
   const [loading, setLoading] = useImmer<boolean>(false);
   const [visible, setVisible] = useImmer<boolean>(false);
@@ -23,11 +24,13 @@ const PictureUpload: React.FC<IProps> = (props) => {
     const { type, size } = file;
     const isJpgOrPng = type === 'image/jpeg' || type === 'image/png';
     if (!isJpgOrPng) {
-      message.error('You can only upload JPG/PNG file!');
+      message.error('仅支持 JPG/PNG 类型的文件!');
+      return;
     }
-    const isLt2M = size / 1024 / 1024 < 0.2;
+    const isLt2M = (size / 1024 / 1024) * 1000 < picSize;
     if (!isLt2M) {
-      message.error('Image must smaller than 200KB!');
+      message.error(`图片必须小于 ${picSize}KB!`);
+      return;
     }
     return isJpgOrPng && isLt2M;
   };

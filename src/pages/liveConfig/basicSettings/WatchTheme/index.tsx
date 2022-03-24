@@ -113,7 +113,7 @@ const WatchTheme: React.FC<IProps> = (props) => {
             required={false}
             rules={[{ required: true, message: '请上传分享图标' }]}
           >
-            <PictureUpload width={128} height={128} />
+            <PictureUpload width={128} height={128} picSize={200} />
           </Item>
         </Form>
       </Spin>

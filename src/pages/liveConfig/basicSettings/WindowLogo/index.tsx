@@ -58,7 +58,7 @@ const WindowLogo: React.FC<IProps> = (props) => {
             </Radio.Group>
           </Item>
           <Item label="Logo" name="logo">
-            <PictureUpload width={128} height={128} />
+            <PictureUpload width={128} height={128} picSize={200} />
           </Item>
         </Form>
       </Spin>

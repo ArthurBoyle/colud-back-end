@@ -60,7 +60,7 @@ const WechatSharing: React.FC<IProps> = (props) => {
             </Radio.Group>
           </Item>
           <Item label="分享图标" name="channel_url">
-            <PictureUpload disabled width={128} height={128} />
+            <PictureUpload disabled width={128} height={128} picSize={200} />
           </Item>
           <Item>
             <div className={style.title}>设置【发送给朋友】</div>

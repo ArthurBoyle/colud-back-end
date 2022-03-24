@@ -3,7 +3,6 @@ import { Popover } from 'antd';
 import mobilePhone from '@/assets/images/mobilePhone.png';
 import phone from '@/assets/images/phone.png';
 import e_mail from '@/assets/images/email.png';
-import weChatPng from '@/assets/images/weChat.png';
 import style from './index.less';
 
 const Footer: React.FC = () => {
@@ -14,15 +13,15 @@ const Footer: React.FC = () => {
     <div className={style.content}>
       <div>
         <img src={mobilePhone} alt="" className={style.phone} />
-        <span className={`${style.text} ${style.textPhone}`}>400-0568-000</span>
+        <span className={`${style.text} ${style.textPhone}`}>0371-56001150</span>
       </div>
       <div>
         <img src={phone} alt="" className={style.phone} />
-        <span className={`${style.text} ${style.textPhone}`}>010-64813450</span>
+        <span className={`${style.text} ${style.textPhone}`}>13101713637</span>
       </div>
       <div>
         <img src={e_mail} alt="" className={style.eMail} />
-        <span className={`${style.text} ${style.textEMali}`}>hr@weiboyi.com</span>
+        <span className={`${style.text} ${style.textEMali}`}>zyf@hnxsj.ltd</span>
       </div>
     </div>
   );
@@ -30,7 +29,10 @@ const Footer: React.FC = () => {
   const weChat = (
     <div className={style.content}>
       <div>官方微信公众号</div>
-      <img src={weChatPng} alt="" />
+      <img
+        src="https://db.hnxsj.vip/image/default/4691FBD5FFC2481BAB5B5E5CCD0BB7E7-6-2.jpg"
+        alt=""
+      />
     </div>
   );
 

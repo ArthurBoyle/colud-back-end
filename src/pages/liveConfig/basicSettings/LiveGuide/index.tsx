@@ -62,7 +62,7 @@ const LiveGuide: React.FC<IProps> = (props) => {
             </Radio.Group>
           </Item>
           <Item label="直播引导图" name="bdt">
-            <PictureUpload width={270} height={480} />
+            <PictureUpload width={270} height={480} picSize={500} />
           </Item>
         </Form>
       </Spin>

@@ -1,5 +1,6 @@
 import React, { forwardRef, useEffect } from 'react';
 import { request } from 'umi';
+import { message } from 'antd';
 import WangEditor from '@/assets/wangEditor/wangEditor.min.js';
 
 interface IProps {
@@ -23,6 +24,10 @@ const Editor = forwardRef((props: IProps, ref: any) => {
     ) {
       // resultFiles 是 input 中选中的文件列表
       // insertImgFn 是获取图片 url 后，插入到编辑器的方法
+      if (resultFiles[0].size > 500000) {
+        message.error('图片必须小于 500KB!');
+        return;
+      }
       const formData = new FormData();
       formData.append('upfile', resultFiles[0]);
       const data = await request('api/static/ueditor/php/controller.php?action=uploadimage', {
@@ -33,7 +38,6 @@ const Editor = forwardRef((props: IProps, ref: any) => {
       // 上传图片，返回结果，将图片插入到编辑器中
       insertImgFn(data.url);
     };
-    ref.current.config.uploadImgMaxSize = 20 * 1024 * 1024; // 2M
 
     // 创建编辑器
     ref.current.create();

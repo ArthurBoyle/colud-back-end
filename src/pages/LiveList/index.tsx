@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect, history, Dispatch } from 'umi';
 import { useImmer } from 'use-immer';
-import { Layout, Form, Card, Avatar, Modal, message, Spin, Row, Col } from 'antd';
+import { Layout, Form, Card, Modal, message, Spin, Row, Col } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -85,11 +85,7 @@ const LiveList: React.FC<IProps> = (props) => {
           </div>
         ]}
       >
-        <Meta
-          avatar={<Avatar size={64} src="https://joeschmoe.io/api/v1/random" />}
-          title="活动名称"
-          description={<div className={style.cardDescription}>{params.value}</div>}
-        />
+        <Meta title="活动名称" description={params.value} />
       </Card>
     );
   };

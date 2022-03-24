@@ -6,7 +6,9 @@ const Footer: React.FC = () => {
   return (
     <Layout.Footer className={style.footer}>
       <div className={style.footerLinks}>
-        <a title="Ant Design Pro" target="_blank" href="https://pro.ant.design">
+        {/*<span>河南新视界网络科技有限公司版权所有</span>*/}
+        <a title="备案号：豫ICP备17032258号">备案号：豫ICP备17032258号</a>
+        {/*<a title="Ant Design Pro" target="_blank" href="https://pro.ant.design">
           Ant Design Pro
         </a>
         <a title="github" target="_blank" href="https://github.com/ant-design/ant-design-pro">
@@ -26,7 +28,7 @@ const Footer: React.FC = () => {
         </a>
         <a title="Ant Design" target="_blank" href="https://ant.design">
           Ant Design
-        </a>
+        </a>*/}
       </div>
       <div className={style.footerCopyright}>
         <span role="img" aria-label="copyright" className="anticon anticon-copyright">
@@ -42,7 +44,8 @@ const Footer: React.FC = () => {
             <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372zm5.6-532.7c53 0 89 33.8 93 83.4.3 4.2 3.8 7.4 8 7.4h56.7c2.6 0 4.7-2.1 4.7-4.7 0-86.7-68.4-147.4-162.7-147.4C407.4 290 344 364.2 344 486.8v52.3C344 660.8 407.4 734 517.3 734c94 0 162.7-58.8 162.7-141.4 0-2.6-2.1-4.7-4.7-4.7h-56.8c-4.2 0-7.6 3.2-8 7.3-4.2 46.1-40.1 77.8-93 77.8-65.3 0-102.1-47.9-102.1-133.6v-52.6c.1-87 37-135.5 102.2-135.5z" />
           </svg>
         </span>
-        2021 蚂蚁集团体验技术部出品
+        <span> 河南新视界网络科技有限公司版权所有</span>
+        {/*2021 蚂蚁集团体验技术部出品 备案号：豫ICP备17032258号*/}
       </div>
     </Layout.Footer>
   );

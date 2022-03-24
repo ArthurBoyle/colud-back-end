@@ -12,13 +12,30 @@
     margin-bottom: 8px;
   }
   :global(.ant-card) {
-    height: 204px;
-  }
-  :global(.ant-card-meta) {
-    height: 115px;
-    cursor: pointer;
+    :global(.ant-card-body) {
+      padding: 24px 24px 36px;
+      :global(.ant-card-meta) {
+        height: 115px;
+        cursor: pointer;
+        :global(.ant-card-meta-title) {
+          font-weight: bold;
+          font-size: 18px;
+        }
+        :global(.ant-card-meta-description) {
+          display: -webkit-box;
+          overflow: hidden;
+          color: rgba(0, 0, 0, 0.65);
+          font-size: 16px;
+          white-space: normal;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 4;
+        }
+      }
+    }
   }
   .newCard {
+    height: 216px;
     text-align: center;
     cursor: pointer;
     span {
@@ -32,13 +49,4 @@
       font-size: 30px;
     }
   }
-}
-
-.cardDescription {
-  display: -webkit-box;
-  overflow: hidden;
-  white-space: normal;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
 }

@@ -24,7 +24,6 @@ const Login: React.FC = () => {
     <>
       <div className={style.container}>
         <div className={style.content}>
-          <div className={style.title}>视频直播互联网管理系统</div>
           <Button
             type="primary"
             className={style.loginButton}

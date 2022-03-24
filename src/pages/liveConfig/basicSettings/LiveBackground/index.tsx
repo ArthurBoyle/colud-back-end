@@ -52,7 +52,7 @@ const LiveBackground: React.FC<IProps> = (props) => {
       <Spin spinning={pageLoading}>
         <Form form={form}>
           <Item label="直播窗口背景" name="zbbj">
-            <PictureUpload width={480} height={270} />
+            <PictureUpload width={480} height={270} picSize={500} />
           </Item>
         </Form>
       </Spin>

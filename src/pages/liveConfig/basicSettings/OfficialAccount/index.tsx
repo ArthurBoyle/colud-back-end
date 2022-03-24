@@ -63,7 +63,7 @@ const OfficialAccount: React.FC<IProps> = (props) => {
             <Input placeholder="请输入公众号名称" allowClear />
           </Item>
           <Item label="二维码" name="erweima">
-            <PictureUpload width={128} height={128} />
+            <PictureUpload width={128} height={128} picSize={200} />
           </Item>
         </Form>
       </Spin>
